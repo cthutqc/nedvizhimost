@@ -3,17 +3,19 @@
 namespace App\View\Components;
 
 use App\Models\Item;
+use App\Repositories\ItemRepository;
 use Closure;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\App;
 use Illuminate\View\Component;
 
 class NewObjectsSlider extends Component
 {
     public $items;
 
-    public function __construct()
+    public function __construct(ItemRepository $itemRepository)
     {
-        $this->items = Item::take(12)->orderBy('created_at')->get();
+        $this->items = $itemRepository->getItems(12);
     }
 
     /**

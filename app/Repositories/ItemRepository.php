@@ -6,6 +6,27 @@ use App\Models\Item;
 
 class ItemRepository
 {
+    /**
+     * @param $amount
+     * @return \Illuminate\Database\Eloquent\Collection|array
+     */
+    public function getItems($amount): \Illuminate\Database\Eloquent\Collection|array
+    {
+        return Item::query()
+            ->when($amount, function ($q) use ($amount) {
+                $q->take($amount);
+            })
+            ->select(['price', 'address', 'slug'])
+            ->with('media')
+            ->orderBy('created_at')
+            ->get();
+    }
+
+    /**
+     * @param $category
+     * @param $amount
+     * @return \Illuminate\Database\Eloquent\Collection|array
+     */
     public function getCategoryItems($category, $amount): \Illuminate\Database\Eloquent\Collection|array
     {
         return Item::query()
@@ -20,6 +41,10 @@ class ItemRepository
             ->get();
     }
 
+    /**
+     * @param $category
+     * @return int
+     */
     public function getAllItems($category): int
     {
         return Item::query()
