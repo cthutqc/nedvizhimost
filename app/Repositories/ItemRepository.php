@@ -6,7 +6,7 @@ use App\Models\Item;
 
 class ItemRepository
 {
-    public function getCategoryItems($category, $amount)
+    public function getCategoryItems($category, $amount): \Illuminate\Database\Eloquent\Collection|array
     {
         return Item::query()
             ->where('category_id', $category->id)
@@ -20,7 +20,7 @@ class ItemRepository
             ->get();
     }
 
-    public function getAllItems($category)
+    public function getAllItems($category): int
     {
         return Item::query()
             ->where('category_id', $category->id)
