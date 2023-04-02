@@ -1,3 +1,3 @@
-<div class="my-20 w-full block">
+<div class="my-10 w-full block">
     {{$slot}}
 </div>

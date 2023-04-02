@@ -5,7 +5,7 @@
             <ul class="hidden lg:flex justify-center space-x-10 items-center">
                 @foreach($pages as $page)
                 <li>
-                    <a href="{{route('pages.show', $page)}}" class="hover:bg-blue-100 text-gray-400 p-1 rounded-lg">
+                    <a href="{{route('pages.show', $page)}}" class="hover:text-red-500 text-gray-400">
                         {{$page->name}}
                     </a>
                 </li>
@@ -25,7 +25,7 @@
             <ul class="hidden lg:flex justify-start space-x-10">
                 @foreach($categories as $category)
                     <li>
-                        <a href="{{route('categories.show', $category)}}" class="text-lg hover:bg-blue-100 p-1 rounded-lg">
+                        <a href="{{route('categories.show', $category)}}" class="text-lg hover:bg-red-500 hover:text-white p-1 rounded-lg">
                             {{$category->name}}
                         </a>
                     </li>

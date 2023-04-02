@@ -4,7 +4,7 @@
             <ul class="hidden lg:block">
                 @foreach($categories as $category)
                 <li>
-                    <a href="{{route('categories.show', $category)}}" class="block py-2">
+                    <a href="{{route('categories.show', $category)}}" class="block py-2 hover:text-red-500">
                         {{$category->name}}
                     </a>
                 </li>
@@ -13,7 +13,7 @@
             <ul class="hidden lg:block">
                 @foreach($pages as $page)
                     <li>
-                        <a href="{{route('pages.show', $page)}}" class="block py-2">
+                        <a href="{{route('pages.show', $page)}}" class="block py-2 hover:text-red-500">
                             {{$page->name}}
                         </a>
                     </li>
