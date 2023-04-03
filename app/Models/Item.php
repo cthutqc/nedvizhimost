@@ -37,4 +37,9 @@ class Item extends Model implements HasMedia
     {
         return number_format($this->attributes['price'] / 100, 0, ' ' , ' ') . '₽';
     }
+
+    public function deal_type():BelongsTo
+    {
+        return $this->belongsTo(DealType::class);
+    }
 }

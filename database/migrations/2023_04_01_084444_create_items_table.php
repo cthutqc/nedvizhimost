@@ -34,6 +34,7 @@ return new class extends Migration
             $table->decimal('longitude', 15, 10)->nullable();
             $table->foreignId('category_id')->nullable()->nullOnDelete()->cascadeOnUpdate();
             $table->foreignId('user_id')->nullable()->nullOnDelete()->cascadeOnUpdate();
+            $table->foreignId('deal_type_id')->nullable()->nullOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }

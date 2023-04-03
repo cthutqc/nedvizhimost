@@ -16,8 +16,8 @@ class ItemRepository
             ->when($amount, function ($q) use ($amount) {
                 $q->take($amount);
             })
-            ->select(['price', 'address', 'slug', 'total_area', 'floor', 'floors', 'rooms'])
-            ->with('media')
+            ->select(['price', 'address', 'slug', 'total_area', 'floor', 'floors', 'rooms', 'deal_type_id'])
+            ->with(['media', 'deal_type'])
             ->orderBy('created_at')
             ->get();
     }
@@ -35,8 +35,8 @@ class ItemRepository
                 $q->take($amount);
             })
             ->orderBy('price')
-            ->select(['price', 'address', 'slug', 'total_area', 'floor', 'floors', 'rooms'])
-            ->with('media')
+            ->select(['price', 'address', 'slug', 'total_area', 'floor', 'floors', 'rooms', 'deal_type_id'])
+            ->with(['media', 'deal_type'])
             ->inRandomOrder()
             ->get();
     }

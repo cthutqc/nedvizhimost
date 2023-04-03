@@ -20,7 +20,9 @@
             @endif
         </div>
         <hr>
-        <p>Продажа</p>
+        @isset($item->deal_type)
+            <p>{{$item->deal_type->name}}</p>
+        @endisset
     </div>
     <a href="{{route('items.show', $item)}}" class="absolute inset-0"></a>
 </div>

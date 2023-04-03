@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\DealType;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
@@ -32,6 +33,7 @@ class ItemFactory extends Factory
             'latitude' => fake()->latitude(),
             'longitude' => fake()->longitude(),
             'user_id' => User::inRandomOrder()->role('manager')->take(1)->first()->id,
+            'deal_type_id' => DealType::inRandomOrder()->take(1)->first()->id,
         ];
     }
 }
