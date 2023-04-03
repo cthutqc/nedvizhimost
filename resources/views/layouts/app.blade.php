@@ -17,6 +17,7 @@
 </body>
     <x-to-top />
     <livewire:scripts />
+    <livewire:modals.login />
 <script>
     document.addEventListener('livewire:load', () => {
         Livewire.onPageExpired((response, message) => {})

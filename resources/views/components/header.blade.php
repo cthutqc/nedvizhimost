@@ -20,17 +20,33 @@
         x-data="{ atTop: false}"
         @scroll.window="atTop = (window.pageYOffset < 50) ? false: true"
         :class="{ 'fixed bg-white shadow-xl top-0 left-0 right-0 m-auto z-[99]': atTop }"
-        class="flex justify-between py-6">
+        class="py-6">
         <x-container>
-            <ul class="hidden lg:flex justify-start space-x-10">
-                @foreach($categories as $category)
-                    <li>
-                        <a href="{{route('categories.show', $category)}}" class="text-lg hover:bg-red-500 hover:text-white p-1 rounded-lg">
-                            {{$category->name}}
+            <div class="flex justify-between">
+                <ul class="hidden lg:flex justify-start space-x-10">
+                    @foreach($categories as $category)
+                        <li>
+                            <a href="{{route('categories.show', $category)}}" class="text-lg hover:bg-red-500 hover:text-white p-1 rounded-lg">
+                                {{$category->name}}
+                            </a>
+                        </li>
+                    @endforeach
+                </ul>
+                <div class="flex space-x-4 items-center">
+                    @if(!Auth::check())
+                        <button x-data="{}" x-on:click.prevent="window.livewire.emitTo('modals.login', 'show')">
+                            <x-icons.profile/>
+                        </button>
+                    @else
+                        <a href="#">
+                            <x-icons.profile/>
+                            <p>{{auth()->user()->name}}</p>
                         </a>
-                    </li>
-                @endforeach
-            </ul>
+                    @endif
+                    <x-icons.search />
+                    <x-icons.wishlist class="h-9 w-9" />
+                </div>
+            </div>
         </x-container>
     </div>
 </div>

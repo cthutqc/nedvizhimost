@@ -20,9 +20,14 @@
             @endif
         </div>
         <hr>
-        @isset($item->deal_type)
-            <p>{{$item->deal_type->name}}</p>
-        @endisset
+        <div class="flex justify-between items-center relative">
+            @isset($item->deal_type)
+                <p>{{$item->deal_type->name}}</p>
+            @endisset
+            <div>
+                <livewire:wishlist-item :itemId="$item->id" wire:key="{{'wish-item-id-' . $item->id . '-' . substr(md5(rand()),0,5)}}" />
+            </div>
+        </div>
     </div>
     <a href="{{route('items.show', $item)}}" class="absolute inset-0"></a>
 </div>
