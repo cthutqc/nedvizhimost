@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         $this->call([
+            UserPositionSeeder::class,
             UserRoleSeeder::class,
             DealTypeSeeder::class,
             CategoriesSeeder::class,

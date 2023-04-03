@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\UserPosition;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -25,6 +26,7 @@ class UserFactory extends Factory
             'email_verified_at' => now(),
             'password' => 'password', // password
             'remember_token' => Str::random(10),
+            'user_position_id' => UserPosition::inRandomOrder()->take(1)->first()->id,
         ];
     }
 
