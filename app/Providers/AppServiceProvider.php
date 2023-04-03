@@ -26,7 +26,7 @@ class AppServiceProvider extends ServiceProvider
             \URL::forceScheme('https');
         }
 
-        View::composer(['components.header', 'components.footer'], function ($view) {
+        View::composer(['components.header', 'components.footer', 'components.mobile-home-categories', 'components.mobile-menu'], function ($view) {
             $view->with('categories', Category::all());
             $view->with('pages', Page::all());
         });

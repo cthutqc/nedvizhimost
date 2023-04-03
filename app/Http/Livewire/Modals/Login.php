@@ -3,12 +3,15 @@
 namespace App\Http\Livewire\Modals;
 
 use App\Http\Livewire\Modal;
-use Livewire\Component;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class Login extends Modal
 {
+    public $name;
     public $email;
     public $password;
+    public $password_confirmation;
     public $loginPage = true;
     public $registerPage = false;
 
@@ -32,15 +35,16 @@ class Login extends Modal
     public function login()
     {
         $validatedDate = $this->validate([
+            'name' => 'required',
             'email' => 'required|email',
             'password' => 'required',
         ]);
 
         if(\Auth::attempt(array('email' => $this->email, 'password' => $this->password))){
-            session()->flash('message', "You are Login successful.");
+            session()->flash('message', "Вы удачно вошли.");
             return redirect(request()->header('Referer'));
         }else{
-            session()->flash('error', 'Email or password are wrong.');
+            session()->flash('error', 'Email или пароль не совпадают.');
         }
     }
 
@@ -51,5 +55,17 @@ class Login extends Modal
             'password' => 'required|confirmed',
             'password_confirmation' => 'required',
         ]);
+
+        $user = User::create([
+            'name' => $this->name,
+            'email' => $this->email,
+            'password' => $this->password
+        ]);
+
+        $user->assignRole('user');
+
+        Auth::login($user);
+
+        return redirect(request()->header('Referer'));
     }
 }

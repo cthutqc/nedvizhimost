@@ -1,0 +1,54 @@
+.animation__line {
+    display: block;
+    width: 2px;
+    height: 80px;
+    position: absolute;
+    bottom: 0;
+    left: calc(50% - 1px);
+    z-index: 2;
+    background: rgba(255,255,255,0.4);
+    overflow: hidden;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+.animation__line::after {
+    content: "";
+    display: block;
+    width: 2px;
+    height: 40px;
+    background: #fff;
+    position: absolute;
+    top: -40px;
+    left: 0;
+    animation: line 2s ease-in-out infinite;
+}
+@keyframes line {
+    90% { top:100%; }
+    100% { top:100%; }
+}
+
+.home-page-slider .swiper-slide-active .text, .page_title {
+    animation: opacity 2s ease-in-out;
+    animation-iteration-count: 1
+}
+
+@keyframes opacity {
+    0% { opacity:0%; }
+    100% { opacity:100%; }
+}
+
+.home-page-slider .swiper-slide-active .background, .page_background, .banner:hover .banner_background{
+    animation: scale_background 30s infinite;
+    animation-iteration-count: 1
+}
+
+@keyframes scale_background {
+    0% {
+        transform: scale(1.0);
+    }
+    100% {
+        transform: scale(2.0);
+    }
+}

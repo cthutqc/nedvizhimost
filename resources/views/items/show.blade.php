@@ -6,10 +6,13 @@
         <x-h1>
             {{$item->name}}
         </x-h1>
-        <div>№ объекта: {{$item->id}}</div>
 
-        <div class="grid grid-cols-3 gap-4">
-            <div class="col-span-2">
+        <x-row>
+            <p>№ объекта: {{$item->id}}</p>
+        </x-row>
+
+        <div class="block lg:grid lg:grid-cols-3 gap-4">
+            <div class="lg:col-span-2">
                 <div x-data="{swiper: null, thumb: null}"
                      x-init="thumbs = new Swiper($refs.container_thumbs, {
                         loop: false,
@@ -41,12 +44,12 @@
                             <x-arrow dir="prev" />
                             <div class="swiper-wrapper">
                                 @forelse($item->getMedia() as $image)
-                                    <div class="swiper-slide block h-[250px] md:h-[500px] w-full relative bg-center bg-center bg-no-repeat bg-cover" style="background-image: url({{$image->getUrl()}})">
+                                    <div class="swiper-slide block h-[300px] md:h-[500px] w-full relative bg-center bg-center bg-no-repeat bg-cover" style="background-image: url({{$image->getUrl()}})">
                                         <a data-fslightbox="gallery" class="absolute top-0 left-0 right-0 bottom-0" href="{{$image->getUrl()}}">
                                         </a>
                                     </div>
                                 @empty
-                                    <div class="swiper-slide block h-[250px] md:h-[500px] w-full relative bg-center bg-center bg-no-repeat bg-cover" style="background-image: url({{asset('images/item_placeholder.png')}})">
+                                    <div class="swiper-slide block h-[250px] md:h-[500px] w-full relative bg-center bg-center bg-no-repeat bg-cover" style="background-image: url({{asset('images/item_placeholder.jpg')}})">
                                     </div>
                                 @endforelse
                             </div>

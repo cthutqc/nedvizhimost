@@ -56,6 +56,13 @@
                     </div>
                     <div class="space-y-6">
                         <div class="w-full relative">
+                            <input type="text" wire:model="name" class="rounded-xl p-4 pl-12 w-full border border-slate-300" placeholder="Имя">
+                            <span class="absolute left-2 top-1/2 -translate-y-1/2 h-8 w-8">
+                                <x-icons.profile />
+                            </span>
+                            @error('name')<x-error>{{ $message }}</x-error>@enderror
+                        </div>
+                        <div class="w-full relative">
                             <input type="text" wire:model="email" class="rounded-xl p-4 pl-12 w-full border border-slate-300" placeholder="Email">
                             <span class="absolute left-2 top-1/2 -translate-y-1/2 h-8 w-8">
                                 <x-icons.profile />
@@ -63,21 +70,21 @@
                             @error('email')<x-error>{{ $message }}</x-error>@enderror
                         </div>
                         <div class="w-full relative">
-                            <input type="password" wire:model="password" wire:key="password" class="rounded-xl p-4 pl-12 w-full border border-slate-300" placeholder="Пароль">
+                            <input type="password" wire:model="password" class="rounded-xl p-4 pl-12 w-full border border-slate-300" placeholder="Пароль">
                             <span class="absolute left-2 top-1/2 -translate-y-1/2 h-8 w-8">
                                 <x-icons.password />
                             </span>
                             @error('password')<x-error>{{ $message }}</x-error>@enderror
                         </div>
                         <div class="w-full relative">
-                            <input type="password" wire:model="password_confirmation" wire:key="password_confirmation" class="rounded-xl p-4 pl-12 w-full border border-slate-300" placeholder="Повторите пароль">
+                            <input type="password" wire:model="password_confirmation" class="rounded-xl p-4 pl-12 w-full border border-slate-300" placeholder="Повторите пароль">
                             <span class="absolute left-2 top-1/2 -translate-y-1/2 h-8 w-8">
-                                <x-icons.password />
+                                <x-icons.password_confirmation />
                             </span>
                             @error('password_confirmation')<x-error>{{ $message }}</x-error>@enderror
                         </div>
                         <div class="text-center">
-                            <button class="bg-red-500 hover:bg-red-700 rounded-xl py-4 w-full text-white m-auto" wire:click.prevent="login">Регистрация</button>
+                            <button class="bg-red-500 hover:bg-red-700 rounded-xl py-4 w-full text-white m-auto" wire:click.prevent="register">Регистрация</button>
                         </div>
                         <div>
                             <button wire:click.prevent="openLoginPage">Уже есть аккаунт? Войти</button>
