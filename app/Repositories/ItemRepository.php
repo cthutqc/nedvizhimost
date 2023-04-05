@@ -51,4 +51,15 @@ class ItemRepository
             ->where('category_id', $category->id)
             ->count();
     }
+
+    public function searchItems($search): \Illuminate\Database\Eloquent\Collection|array
+    {
+        return Item::query()
+            ->orderBy('price')
+            ->select(['name', 'price', 'address', 'slug', 'total_area', 'floor', 'floors', 'rooms', 'deal_type_id'])
+            ->with(['media'])
+            ->where( 'address', 'like', '%' . $search . '%')
+            ->take(12)
+            ->get();
+    }
 }

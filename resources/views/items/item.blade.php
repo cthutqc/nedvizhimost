@@ -3,9 +3,10 @@
         <div class="font-bold absolute left-4 bottom-4 bg-slate-100 py-1 px-2 shadow-sm rounded-md text-lg group-hover/item:bg-red-500 group-hover/item:text-white">
             {{$item->formatted_price}}
         </div>
+        <a href="{{route('items.show', $item)}}" class="absolute inset-0"></a>
     </div>
     <div class="p-6 space-y-6">
-        <div class="h-[50px]">{{$item->address}}</div>
+        <a href="{{route('items.show', $item)}}" class="h-[50px] hover:underline font-bold">{{$item->address}}</a>
         <div class="flex flex-wrap justify-start space-x-4 text-sm">
             @if($item->rooms)
                 <p class="flex items-center space-x-1"><x-icons.bed class="w-6 h-6"/> <span>{{$item->rooms}}</span></p>
@@ -24,10 +25,10 @@
             @isset($item->deal_type)
                 <p>{{$item->deal_type->name}}</p>
             @endisset
-            <div>
+            <div class="flex space-x-2 items-center">
+                <a href="{{route('items.show', $item)}}"><x-icons.inside class="fill-black h-4 w-4" /></a>
                 <livewire:wishlist-item :itemId="$item->id" wire:key="{{'wish-item-id-' . $item->id . '-' . substr(md5(rand()),0,5)}}" />
             </div>
         </div>
     </div>
-    <a href="{{route('items.show', $item)}}" class="absolute inset-0"></a>
 </div>

@@ -46,7 +46,9 @@
                             <p>{{auth()->user()->name}}</p>
                         </a>
                     @endif
-                    <x-icons.search />
+                        <button x-data="{}" x-on:click.prevent="window.livewire.emitTo('modals.search', 'showSearch')">
+                            <x-icons.search/>
+                        </button>
                     <x-icons.wishlist class="h-9 w-9" />
                     <x-mobile-menu />
                 </div>

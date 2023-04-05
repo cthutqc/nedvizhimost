@@ -1,5 +1,5 @@
 <div class="w-full">
-    <x-modal wire:model="show">
+    <x-modal wire:model="show" wire:model2="search">
         <div class="my-10">
             @if($loginPage)
                 <div>
