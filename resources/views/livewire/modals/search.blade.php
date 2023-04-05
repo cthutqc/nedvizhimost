@@ -8,7 +8,7 @@
                 </span>
             </div>
             @isset($items)
-                <div class="grid grid-cols-2 gap-4 mt-10">
+                <div class="grid md:grid-cols-2 gap-4 mt-10 max-h-[500px] overflow-y-scroll scrollbar-hide">
                     @foreach($items as $item)
                         <a href="{{route('items.show', $item)}}" class="flex space-x-2 items-center border border-slate-300 rounded-xl overflow-hidden">
                             <div

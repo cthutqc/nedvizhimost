@@ -1,6 +1,7 @@
 @import "swiper.css";
 @import "animation.css";
 @import "codebase.css";
+@import "custom.css";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
