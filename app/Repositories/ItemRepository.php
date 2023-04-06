@@ -13,7 +13,7 @@ class ItemRepository
     public function getItems($amount, $category = null): \Illuminate\Database\Eloquent\Collection|array
     {
         return Item::query()
-            ->getItems($amount)
+            ->getItems($amount, $category)
             ->get();
     }
 

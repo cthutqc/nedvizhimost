@@ -31,7 +31,8 @@
                         <li>
                             <a href="{{route('categories.show', $category)}}" @class([
         "text-lg hover:bg-red-500 hover:text-white p-1 rounded-lg",
-        "bg-red-500 text-white" => strpos(Request::url(), $category->slug)
+        "bg-red-500 text-white" => strpos(Request::url(), 'object') ? (App\Models\Item::where('slug', request()->segment(2))
+            ->first()->category->id == $category->id) : strpos(Request::url(), $category->slug),
 ])>
                                 {{$category->name}}
                             </a>
