@@ -1,6 +1,6 @@
-npm install
-composer install
-php artisan migrate
-php artisan db:seed
-npm run dev
-php artisan serve
+npm install<br>
+composer install<br>
+php artisan migrate<br>
+php artisan db:seed<br>
+npm run dev<br>
+php artisan serve<br>
