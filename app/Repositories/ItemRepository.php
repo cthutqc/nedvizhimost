@@ -16,8 +16,8 @@ class ItemRepository
             ->when($amount, function ($q) use ($amount) {
                 $q->take($amount);
             })
-            ->select(['price', 'address', 'slug', 'total_area', 'floor', 'floors', 'rooms', 'deal_type_id'])
-            ->with(['media', 'deal_type'])
+            ->select('user_id', 'price', 'address', 'slug', 'total_area', 'floor', 'floors', 'rooms')
+            ->with(['media', 'user:id,phone'])
             ->orderBy('created_at')
             ->get();
     }
@@ -35,8 +35,8 @@ class ItemRepository
                 $q->take($amount);
             })
             ->orderBy('price')
-            ->select(['price', 'address', 'slug', 'total_area', 'floor', 'floors', 'rooms', 'deal_type_id'])
-            ->with(['media', 'deal_type'])
+            ->select('user_id', 'price', 'address', 'slug', 'total_area', 'floor', 'floors', 'rooms')
+            ->with(['media', 'user:id,phone'])
             ->inRandomOrder()
             ->get();
     }
@@ -56,7 +56,7 @@ class ItemRepository
     {
         return Item::query()
             ->orderBy('price')
-            ->select(['name', 'price', 'address', 'slug', 'total_area', 'floor', 'floors', 'rooms', 'deal_type_id'])
+            ->select('name', 'price', 'address', 'slug', 'total_area', 'floor', 'floors', 'rooms')
             ->with(['media'])
             ->where( 'address', 'like', '%' . $search . '%')
             ->take(12)
