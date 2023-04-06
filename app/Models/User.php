@@ -48,7 +48,7 @@ class User extends Authenticatable implements FilamentUser, HasMedia
 
     public function canAccessFilament(): bool
     {
-        return (bool)$this->hasRole('admin');
+        return $this->hasRole('admin');
     }
 
     public function items():HasMany
