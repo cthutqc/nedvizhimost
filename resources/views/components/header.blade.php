@@ -29,7 +29,10 @@
                 <ul class="hidden lg:flex justify-start space-x-10">
                     @foreach($categories as $category)
                         <li>
-                            <a href="{{route('categories.show', $category)}}" class="text-lg hover:bg-red-500 hover:text-white p-1 rounded-lg">
+                            <a href="{{route('categories.show', $category)}}" @class([
+        "text-lg hover:bg-red-500 hover:text-white p-1 rounded-lg",
+        "bg-red-500 text-white" => strpos(Request::url(), $category->slug)
+])>
                                 {{$category->name}}
                             </a>
                         </li>
