@@ -10,34 +10,10 @@ class ItemRepository
      * @param $amount
      * @return \Illuminate\Database\Eloquent\Collection|array
      */
-    public function getItems($amount): \Illuminate\Database\Eloquent\Collection|array
+    public function getItems($amount, $category = null): \Illuminate\Database\Eloquent\Collection|array
     {
         return Item::query()
-            ->when($amount, function ($q) use ($amount) {
-                $q->take($amount);
-            })
-            ->select('user_id', 'price', 'address', 'slug', 'total_area', 'floor', 'floors', 'rooms')
-            ->with(['media', 'user:id,phone'])
-            ->orderBy('created_at')
-            ->get();
-    }
-
-    /**
-     * @param $category
-     * @param $amount
-     * @return \Illuminate\Database\Eloquent\Collection|array
-     */
-    public function getCategoryItems($category, $amount): \Illuminate\Database\Eloquent\Collection|array
-    {
-        return Item::query()
-            ->where('category_id', $category->id)
-            ->when($amount, function ($q) use ($amount) {
-                $q->take($amount);
-            })
-            ->orderBy('price')
-            ->select('user_id', 'price', 'address', 'slug', 'total_area', 'floor', 'floors', 'rooms')
-            ->with(['media', 'user:id,phone'])
-            ->inRandomOrder()
+            ->getItems($amount)
             ->get();
     }
 
@@ -56,7 +32,7 @@ class ItemRepository
     {
         return Item::query()
             ->orderBy('price')
-            ->select('name', 'price', 'address', 'slug', 'total_area', 'floor', 'floors', 'rooms')
+            ->select('name', 'price', 'address', 'slug')
             ->with(['media'])
             ->where( 'address', 'like', '%' . $search . '%')
             ->take(12)

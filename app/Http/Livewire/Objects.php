@@ -27,7 +27,7 @@ class Objects extends Component
 
         $this->totalItems = $itemRepository->getAllItems($this->category);
 
-        $items = $itemRepository->getCategoryItems($this->category, $this->amount);
+        $items = $itemRepository->getItems($this->amount, $this->category);
 
         return view('livewire.objects', [
             'items' => $items,

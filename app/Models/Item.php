@@ -10,6 +10,7 @@ use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
+use Illuminate\Database\Eloquent\Builder;
 
 class Item extends Model implements HasMedia
 {
@@ -42,5 +43,20 @@ class Item extends Model implements HasMedia
     public function deal_type():BelongsTo
     {
         return $this->belongsTo(DealType::class);
+    }
+
+    public function scopeGetItems(Builder $query, $amount, $category = null): void
+    {
+        $query->when($amount, function ($q) use ($amount) {
+                $q->take($amount);
+            })
+            ->when($category, function ($q) use ($category) {
+                $q->where('category_id', $category->id)
+                    ->orderBy('price');
+            }, function ($q){
+                $q->orderBy('created_at');
+            })
+            ->select('user_id', 'price', 'address', 'slug', 'total_area', 'floor', 'floors', 'rooms')
+            ->with(['media', 'user:id,phone']);
     }
 }
