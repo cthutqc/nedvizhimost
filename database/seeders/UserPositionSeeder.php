@@ -13,13 +13,8 @@ class UserPositionSeeder extends Seeder
      */
     public function run(): void
     {
-        $userPositions = ['Агент по продаже недвижимости'];
+        $userPositions = ['name' => 'Агент по продаже недвижимости'];
 
-        foreach($userPositions as $userPosition)
-        {
-            UserPosition::create([
-                'name' => $userPosition,
-            ]);
-        }
+        UserPosition::insert($userPositions);
     }
 }

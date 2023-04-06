@@ -13,13 +13,12 @@ class DealTypeSeeder extends Seeder
      */
     public function run(): void
     {
-        $dealTypes = ['Прямая продажа', 'Свободная продажа', 'Альтернатива'];
+        $dealTypes = [
+            ['name' =>'Прямая продажа'],
+            ['name' =>'Свободная продажа'],
+            ['name' => 'Альтернатива']
+        ];
 
-        foreach($dealTypes as $dealType)
-        {
-            DealType::create([
-                'name' => $dealType
-            ]);
-        }
+        DealType::insert($dealTypes);
     }
 }
