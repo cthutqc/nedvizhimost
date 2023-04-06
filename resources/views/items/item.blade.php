@@ -1,9 +1,21 @@
 <div class="swiper-slide group/item overflow-hidden shadow-md hover:shadow-lg rounded-xl relative">
     <div class="h-[240px] w-full block bg-cover bg-no-repeat bg-center relative" style="background-image: url({{$item->getFirstMediaUrl() ?: asset('images/item_placeholder.jpg')}})">
-        <div class="font-bold absolute left-4 bottom-4 bg-slate-100 py-1 px-2 shadow-sm rounded-md text-lg group-hover/item:bg-red-500 group-hover/item:text-white">
-            {{$item->formatted_price}}
-        </div>
         <a href="{{route('items.show', $item)}}" class="absolute inset-0"></a>
+        <div class="absolute left-4 right-4 m-auto bottom-4">
+            <div class="flex justify-between items-center">
+                <div class="font-bold bg-slate-100 py-1 px-2 shadow-sm rounded-md text-lg group-hover/item:bg-red-500 group-hover/item:text-white">
+                    {{$item->formatted_price}}
+                </div>
+                <div class="flex space-x-2 items-center">
+                    <div class="bg-black bg-opacity-70 p-1 rounded-md text-white">
+                        <a href="{{route('items.show', $item)}}"><x-icons.inside class="fill-current h-4 w-4" /></a>
+                    </div>
+                    <div class="bg-black bg-opacity-70 p-1 rounded-md">
+                        <livewire:wishlist-item :itemId="$item->id" wire:key="{{'wish-item-id-' . $item->id . '-' . substr(md5(rand()),0,5)}}" />
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="p-6 space-y-6">
         <a href="{{route('items.show', $item)}}" class="h-[50px] hover:underline font-bold">{{$item->address}}</a>
@@ -21,14 +33,13 @@
             @endif
         </div>
         <hr>
-        <div class="flex justify-between items-center relative">
-            @isset($item->deal_type)
-                <p>{{$item->deal_type->name}}</p>
-            @endisset
-            <div class="flex space-x-2 items-center">
-                <a href="{{route('items.show', $item)}}"><x-icons.inside class="fill-black h-4 w-4" /></a>
-                <livewire:wishlist-item :itemId="$item->id" wire:key="{{'wish-item-id-' . $item->id . '-' . substr(md5(rand()),0,5)}}" />
-            </div>
+        <div class="flex justify-between space-x-1 items-center relative">
+            <button class="flex items-center justify-center space-x-1 border border-slate-300 rounded-md py-2 w-full hover:bg-red-500 hover:border-red-500 hover:text-white">
+                <x-icons.phone class="h-5 w-5"/><span>Позвонить</span>
+            </button>
+            <button class="flex items-center justify-center space-x-1 border border-slate-300 rounded-md py-2 w-full hover:bg-red-500 hover:border-red-500 hover:text-white">
+                <x-icons.mail class="h-5 w-5"/><span>Написать</span>
+            </button>
         </div>
     </div>
 </div>
