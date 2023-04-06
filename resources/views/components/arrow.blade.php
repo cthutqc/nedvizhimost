@@ -8,7 +8,7 @@
 ])>
     <button
         @class([
-            "lg:text-xl focus:outline-none fill-goldDark hover:fill-gold",
+            "lg:text-xl focus:outline-none bg-white rounded-full border hover:bg-red-500 border-red-500 fill-red-500 hover:fill-white",
             "swiper-prev" => $dir == 'prev',
             "swiper-next" => $dir == 'next',
         ])

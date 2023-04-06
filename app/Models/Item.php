@@ -56,7 +56,7 @@ class Item extends Model implements HasMedia
             }, function ($q){
                 $q->orderBy('created_at');
             })
-            ->select('user_id', 'price', 'address', 'slug', 'total_area', 'floor', 'floors', 'rooms')
+            ->select('name', 'user_id', 'price', 'address', 'slug', 'total_area', 'floor', 'floors', 'rooms')
             ->with(['media', 'user:id,phone']);
     }
 }
