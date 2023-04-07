@@ -21,11 +21,11 @@ class UserRoleSeeder extends Seeder
 
         $user = User::firstOrCreate(
             [
-                'email' =>  'toserg81@mail.ru'
+                'email' =>  'admin@site.com'
             ],
             [
-                'name' => 'Sergey',
-                'email' => 'toserg81@mail.ru',
+                'name' => 'Admin',
+                'email' => 'admin@site.com',
                 'password' => 'gfhjkmgfhjkm',
                 'email_verified_at' => now(),
             ]

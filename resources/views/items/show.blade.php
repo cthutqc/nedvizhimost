@@ -75,6 +75,16 @@
 
                 <x-row>
                     <x-title>Характеристики</x-title>
+                    <div class="grid grid-cols-2 gap-x-8">
+                        @foreach($attributes as $name => $value)
+                            <div class="border-b border-b-slate-200">
+                                <div class="py-4 flex justify-between">
+                                    <div class="text-slate-500 text-left">{{$name}}</div>
+                                    <div class="text-right">{{$value}}</div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
                 </x-row>
 
                 <x-row>
@@ -112,7 +122,7 @@
                     </div>
                 </div>
             </div>
-
         </div>
+
     </x-container>
 </x-app-layout>
