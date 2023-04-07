@@ -19,7 +19,6 @@
             },
         },
     })"
-         class="sticky top-0"
     >
         <x-title>
             Новые объекты

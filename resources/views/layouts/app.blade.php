@@ -8,7 +8,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <livewire:styles />
 </head>
-<body class="leading-none overflow-x-hidden flex min-h-screen flex-col justify-between">
+<body class="font-inter leading-none overflow-x-hidden flex min-h-screen flex-col justify-between">
     <x-header />
         <main>
             {{$slot}}

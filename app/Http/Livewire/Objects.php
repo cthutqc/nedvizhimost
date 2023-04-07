@@ -14,6 +14,12 @@ class Objects extends Component
     public $amount;
     public $isBot;
     public $totalItems;
+    private $itemRepository;
+
+    public function boot()
+    {
+        $this->itemRepository = App::make(ItemRepository::class);
+    }
 
     public function mount($isBot = false)
     {
@@ -23,11 +29,9 @@ class Objects extends Component
 
     public function render()
     {
-        $itemRepository = App::make(ItemRepository::class);
+        $this->totalItems = $this->itemRepository->getAllItems($this->category);
 
-        $this->totalItems = $itemRepository->getAllItems($this->category);
-
-        $items = $itemRepository->getItems($this->amount, $this->category);
+        $items = $this->itemRepository->getItems($this->amount, $this->category);
 
         return view('livewire.objects', [
             'items' => $items,

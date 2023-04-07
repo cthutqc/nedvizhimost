@@ -3,16 +3,16 @@
 
         {{ Breadcrumbs::render('item', $item) }}
 
-        <x-h1>
-            {{$item->name}}
-        </x-h1>
-
-        <x-row>
-            <p>№ объекта: {{$item->id}}</p>
-        </x-row>
-
         <div class="block lg:grid lg:grid-cols-3 gap-8">
             <div class="lg:col-span-2">
+                <x-h1>
+                    {{$item->name}}
+                </x-h1>
+
+                <x-row>
+                    <p>№ объекта: {{$item->id}}</p>
+                </x-row>
+
                 <div x-data="{swiper: null, thumb: null}"
                      x-init="thumbs = new Swiper($refs.container_thumbs, {
                         loop: false,
@@ -95,7 +95,7 @@
             </div>
 
             <div class="space-y-10 sticky top-28 h-fit">
-                <div class="space-y-4 pb-4">
+                <div class="space-y-4 pb-4 border-b border-slate-200">
                     <p class="text-slate-400">Цена</p>
                     <p class="font-bold text-3xl">{{$item->formattedPrice}}</p>
                 </div>

@@ -21,10 +21,12 @@ class ItemRepository
      * @param $category
      * @return int
      */
-    public function getAllItems($category): int
+    public function getAllItems($category = null): int
     {
         return Item::query()
-            ->where('category_id', $category->id)
+            ->when($category, function ($q) use ($category) {
+                $q->where('category_id', $category->id);
+            })
             ->count();
     }
 

@@ -7,6 +7,8 @@
             {{$category->name}}
         </x-h1>
 
+        <livewire:filter :category="$category"/>
+
         <livewire:objects
             :category="$category"
             :isBot="preg_match('/google|googlebot|Lighthouse/i', Request::userAgent()) ? true : false"/>
