@@ -13,8 +13,11 @@
         "vite": "^4.0.0"
     },
     "dependencies": {
+        "@alpinejs/focus": "^3.12.0",
+        "@alpinejs/mask": "^3.12.0",
         "alpinejs": "^3.12.0",
         "lodash": "^4.17.21",
-        "swiper": "^8.4.5"
+        "swiper": "^8.4.5",
+        "ymaps": "^0.2.1"
     }
 }

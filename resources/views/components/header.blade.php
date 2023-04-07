@@ -12,7 +12,11 @@
                 @endforeach
             </ul>
             <div>
-                <a href="tel:+7 000 000 00 00" class="font-bold text-2xl">+7 000 000 00 00</a>
+                <a href="tel:+7 000 000 00 00" class="font-bold text-2xl block">+7 000 000 00 00</a>
+                <button x-data="{}"
+                        @click.prevent="window.livewire.emitTo('modals.callback', 'show')"
+                        class="text-red-500 block text-right"
+                >Заказать звонок</button>
             </div>
         </div>
     </x-container>

@@ -19,6 +19,7 @@
     <livewire:scripts />
     <livewire:modals.login />
     <livewire:modals.search />
+    <livewire:modals.callback />
 <script>
     document.addEventListener('livewire:load', () => {
         Livewire.onPageExpired((response, message) => {})

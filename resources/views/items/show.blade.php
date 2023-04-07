@@ -11,7 +11,7 @@
             <p>№ объекта: {{$item->id}}</p>
         </x-row>
 
-        <div class="block lg:grid lg:grid-cols-3 gap-4">
+        <div class="block lg:grid lg:grid-cols-3 gap-8">
             <div class="lg:col-span-2">
                 <div x-data="{swiper: null, thumb: null}"
                      x-init="thumbs = new Swiper($refs.container_thumbs, {
@@ -70,32 +70,49 @@
                         </div>
                     </div>
                 </div>
+
+                <x-item-map :latitude="$item->latitude" :longitude="$item->longitude" />
+
+                <x-row>
+                    <x-title>Характеристики</x-title>
+                </x-row>
+
+                <x-row>
+                    <x-title>Описание</x-title>
+                    {{$item->text}}
+                </x-row>
+
             </div>
 
-            <div class="space-y-10">
-                <div class="border-b border-b-slate-200 space-y-4 pb-4">
+            <div class="space-y-10 sticky top-28 h-fit">
+                <div class="space-y-4 pb-4">
                     <p class="text-slate-400">Цена</p>
                     <p class="font-bold text-3xl">{{$item->formattedPrice}}</p>
                 </div>
-                <div class="flex space-x-4 w-full bg-slate-50 border border-slate-200 rounded-xl p-4">
-                    <div>
-                        <img
-                            src="{{count($item->user->getMedia()) ? $item->user->getFirstMediaUrl() : asset('images/user_placeholder.jpg')}}"
-                            class="h-[140px]"
-                        />
+                <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 space-y-10">
+                    <div class="flex space-x-4 w-full">
+                        <div>
+                            <img
+                                src="{{count($item->user->getMedia()) ? $item->user->getFirstMediaUrl() : asset('images/user_placeholder.jpg')}}"
+                                class="h-[140px]"
+                            />
+                        </div>
+                        <div class="space-y-4">
+                            <p class="font-bold text-2xl">{{$item->user->name}}<br>{{$item->user->last_name}}</p>
+                            <p class="text-slate-400">{{$item->user->user_position->name}}</p>
+                            <p class="font-bold text-xl">{{$item->user->phone}}</p>
+                        </div>
                     </div>
-                    <div class="space-y-4">
-                        <p class="font-bold text-2xl">{{$item->user->name}}<br>{{$item->user->last_name}}</p>
-                        <p class="text-slate-400">{{$item->user->user_position->name}}</p>
-                        <p class="font-bold text-xl">{{$item->user->phone}}</p>
+                    <div>
+                        <button x-data="{}"
+                                @click.prevent="window.livewire.emitTo('modals.callback', 'show')"
+                                class="flex justify-center items-center space-x-2 bg-red-500 hover:bg-red-700 text-white py-4 block rounded-xl m-auto w-full">
+                                    <x-icons.phone class="w-6 h-6"/><span>Перезвоните мне</span>
+                        </button>
                     </div>
                 </div>
             </div>
 
-        </div>
-
-        <div>
-            {{$item->text}}
         </div>
     </x-container>
 </x-app-layout>

@@ -1,12 +1,20 @@
 import _ from 'lodash';
 import Alpine from 'alpinejs'
+import focus from '@alpinejs/focus'
+import mask from '@alpinejs/mask';
 import Swiper, {Autoplay, Navigation, Pagination, Controller, EffectFade, Thumbs,} from 'swiper'
+import ymaps from 'ymaps'
 
 window._ = _;
 
 try {
     window.Swiper = Swiper.use([Autoplay, Navigation, Pagination, Controller, EffectFade, Thumbs]);
 } catch (e) {}
+
+window.ymaps = ymaps
+
+Alpine.plugin(focus)
+Alpine.plugin(mask)
 
 window.Alpine = Alpine
 
