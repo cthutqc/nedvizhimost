@@ -18,6 +18,7 @@
         </div>
     </div>
     <div class="p-6 space-y-6">
+        <p class="text-slate-600 text-sm block pb-2">№ объекта: {{$item->id}}</p>
         <a href="{{route('items.show', $item)}}" class="h-[50px] hover:underline font-bold">{{$item->address}}</a>
         <div class="flex flex-wrap justify-start space-x-4 text-sm">
             @if($item->rooms)

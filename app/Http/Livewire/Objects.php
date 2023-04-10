@@ -15,6 +15,14 @@ class Objects extends Component
     public $isBot;
     public $totalItems;
     private $itemRepository;
+    public $selected;
+
+    protected $listeners = ['setSelected'];
+
+    public function setSelected($selected)
+    {
+        $this->selected = $selected;
+    }
 
     public function boot()
     {
@@ -25,13 +33,18 @@ class Objects extends Component
     {
         $this->isBot = $isBot;
         $this->isBot ? $this->amount = 16 : $this->amount = 32;
+        $this->selected['category'] = $this->category->toArray();
     }
 
     public function render()
     {
-        $this->totalItems = $this->itemRepository->getAllItems($this->category);
+        $this->totalItems = $this->itemRepository->getAllItems($this->selected);
 
-        $items = $this->itemRepository->getItems($this->amount, $this->category);
+        $items = $this->itemRepository->getItems($this->amount, $this->selected);
+
+        $this->selected['min_price'] = $items->min('price');
+
+        $this->selected['max_price'] = $items->max('price');
 
         return view('livewire.objects', [
             'items' => $items,

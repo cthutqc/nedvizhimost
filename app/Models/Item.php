@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Arr;
 use LamaLama\Wishlist\Wishlistable;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
@@ -45,18 +46,21 @@ class Item extends Model implements HasMedia
         return $this->belongsTo(DealType::class);
     }
 
-    public function scopeGetItems(Builder $query, $amount, $category = null): void
+    public function scopeGetItems(Builder $query, $amount = null, $selected = null): void
     {
         $query->when($amount, function ($q) use ($amount) {
                 $q->take($amount);
             })
-            ->when($category, function ($q) use ($category) {
-                $q->where('category_id', $category->id)
+            ->when(isset($selected['category']), function ($q) use ($selected) {
+                $q->where('category_id', $selected['category']['id'])
                     ->orderBy('price');
             }, function ($q){
                 $q->orderBy('created_at');
             })
-            ->select('name', 'user_id', 'price', 'address', 'slug', 'total_area', 'floor', 'floors', 'rooms')
+            ->when(isset($selected['rooms']), function($q) use($selected){
+                $q->whereIn('rooms', $selected['rooms']);
+            })
+            ->select('id', 'name', 'user_id', 'price', 'address', 'slug', 'total_area', 'floor', 'floors', 'rooms')
             ->with(['media', 'user:id,phone']);
     }
 }

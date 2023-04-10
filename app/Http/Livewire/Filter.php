@@ -3,17 +3,22 @@
 namespace App\Http\Livewire;
 
 use App\Models\Category;
+use App\Models\Item;
 use App\Repositories\ItemRepository;
 use Illuminate\Support\Facades\App;
 use Livewire\Component;
 
 class Filter extends Component
 {
-    public $selected;
+    public $selected = [
+        'category' => null,
+        'rooms' => null,
+    ];
     public $live = false;
     public $itemsCount = 0;
-    private $itemRepository;
     public $categoryId;
+
+    private $itemRepository;
 
     public function boot()
     {
@@ -25,11 +30,13 @@ class Filter extends Component
         if($category) {
             $this->live = true;
             $this->categoryId = $category;
-            $this->selected['category'] = Category::find($category->id);
+            $this->selected['category'] = Category::find($category->id)->toArray();
         }
         else {
-            $this->selected['category'] = Category::find(1);
+            $this->selected['category'] = Category::find(1)->toArray();
         }
+
+        $this->emit('setSelected', $this->selected);
     }
 
     public function filter()
@@ -39,7 +46,7 @@ class Filter extends Component
 
     public function selectCategory($categoryId)
     {
-        $this->selected['category'] = Category::find($categoryId);
+        $this->selected['category'] = Category::find($categoryId)->toArray();
 
         if($this->live){
             return redirect()->to('/categories/' . $this->selected['category']['slug']);
@@ -50,15 +57,16 @@ class Filter extends Component
 
     public function countItems()
     {
-        $this->itemsCount = $this->itemRepository->getAllItems($this->selected['category']);
+        $this->itemsCount = $this->itemRepository->getAllItems($this->selected);
     }
 
     public function render()
     {
         $this->countItems();
-
+        $this->emit('setSelected', $this->selected);
         return view('livewire.filter', [
             'categories' => Category::all(),
+            'rooms' => Item::select('rooms')->orderBy('rooms')->where('category_id', $this->selected['category']['id'])->distinct()->get(),
         ]);
     }
 }

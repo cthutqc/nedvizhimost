@@ -10,10 +10,10 @@ class ItemRepository
      * @param $amount
      * @return \Illuminate\Database\Eloquent\Collection|array
      */
-    public function getItems($amount, $category = null): \Illuminate\Database\Eloquent\Collection|array
+    public function getItems($amount, $selected = null): \Illuminate\Database\Eloquent\Collection|array
     {
         return Item::query()
-            ->getItems($amount, $category)
+            ->getItems($amount, $selected)
             ->get();
     }
 
@@ -21,12 +21,10 @@ class ItemRepository
      * @param $category
      * @return int
      */
-    public function getAllItems($category = null): int
+    public function getAllItems($selected = null): int
     {
         return Item::query()
-            ->when($category, function ($q) use ($category) {
-                $q->where('category_id', $category->id);
-            })
+            ->getItems(null, $selected)
             ->count();
     }
 
