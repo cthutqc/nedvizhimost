@@ -32,8 +32,14 @@
                 @endforeach
             </div>
         </div>
-        <div class="relative bg-white w-full border-r border-r-slate-300 whitespace-nowrap border-y border-r border-slate-300">
-            <p class="cursor-pointer p-4">Стоимость</p>
+        <div x-data="{open:false, total_value:50}" class="relative bg-white w-full border-r border-r-slate-300 whitespace-nowrap border-y border-r border-slate-300">
+            <p @click="open = !open" class="cursor-pointer p-4">Стоимость</p>
+            <div x-show="open"
+                 @click.away="open = false"
+                 class="absolute w-[380px] top-[110%] left-0 py-4 px-8 shadow-xl bg-white rounded-xl z-20">
+                <input class="w-full border" type="input" x-model="total_value" />
+                <input class="w-full" type="range" x-model="total_value" min="{{$selected['min']}}" max="{{$selected['max']}}" step="5">
+            </div>
         </div>
         <div class="relative bg-white w-full whitespace-nowrap border-y border-slate-300">
             <p class="cursor-pointer p-4">Город, адрес, район</p>

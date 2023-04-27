@@ -11,5 +11,6 @@
     <x-container>
         <x-mobile-home-categories />
         <x-new-objects-slider />
+        <livewire:actions />
     </x-container>
 </x-app-layout>

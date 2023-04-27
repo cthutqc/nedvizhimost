@@ -50,7 +50,7 @@ class Login extends Modal
 
     public function register()
     {
-        $validatedDate = $this->validate([
+        $this->validate([
             'name' => 'required',
             'email' => 'required|email',
             'password' => 'required|confirmed',

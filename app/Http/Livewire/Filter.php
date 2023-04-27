@@ -36,6 +36,9 @@ class Filter extends Component
             $this->selected['category'] = Category::find(1)->toArray();
         }
 
+        $this->selected['min'] = 100;
+        $this->selected['max'] = 131243324;
+
         $this->emit('setSelected', $this->selected);
     }
 
