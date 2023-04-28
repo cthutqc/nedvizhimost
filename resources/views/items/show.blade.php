@@ -100,14 +100,13 @@
                     <p class="font-bold text-3xl">{{$item->formattedPrice}}</p>
                 </div>
                 <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 space-y-10">
-                    <div class="flex space-x-4 w-full">
+                    <div class="grid grid-cols-3 w-full">
                         <div>
                             <img
                                 src="{{count($item->user->getMedia()) ? $item->user->getFirstMediaUrl() : asset('images/user_placeholder.jpg')}}"
-                                class="h-[140px]"
                             />
                         </div>
-                        <div class="space-y-4">
+                        <div class="space-y-4 col-span-2">
                             <p class="font-bold text-2xl">{{$item->user->name}}<br>{{$item->user->last_name}}</p>
                             <p class="text-slate-400">{{$item->user->user_position->name}}</p>
                             <p class="font-bold text-xl">{{$item->user->phone}}</p>

@@ -57,6 +57,10 @@ class Item extends Model implements HasMedia
             }, function ($q){
                 $q->orderBy('created_at');
             })
+            ->when(isset($selected['user']), function ($q) use ($selected) {
+                $q->where('user_id', $selected['user']['id'])
+                    ->orderBy('price');
+            })
             ->when(isset($selected['rooms']), function($q) use($selected){
                 $q->whereIn('rooms', $selected['rooms']);
             })

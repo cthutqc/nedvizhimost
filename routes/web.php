@@ -16,11 +16,17 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', \App\Http\Controllers\HomeController::class)
     ->name('home');
 
-Route::get('/categories/{category:slug}', \App\Http\Controllers\CategoryController::class)
+Route::get('categories/{category:slug}', \App\Http\Controllers\CategoryController::class)
     ->name('categories.show');
 
-Route::get('/object/{item:slug}', \App\Http\Controllers\ItemController::class)
+Route::get('object/{item:slug}', \App\Http\Controllers\ItemController::class)
     ->name('items.show');
 
-Route::get('/{page:slug}', \App\Http\Controllers\PageController::class)
+Route::get('employees', [\App\Http\Controllers\EmployeesController::class, 'index'])
+    ->name('employees.index');
+
+Route::get('employees/{user}', [\App\Http\Controllers\EmployeesController::class, 'show'])
+    ->name('employees.show');
+
+Route::get('{page:slug}', \App\Http\Controllers\PageController::class)
     ->name('pages.show');

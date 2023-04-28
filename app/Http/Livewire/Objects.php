@@ -4,13 +4,15 @@ namespace App\Http\Livewire;
 
 use App\Models\Category;
 use App\Models\Item;
+use App\Models\User;
 use App\Repositories\ItemRepository;
 use Illuminate\Support\Facades\App;
 use Livewire\Component;
 
 class Objects extends Component
 {
-    public Category $category;
+    public ?Category $category = null;
+    public ?User $user = null;
     public $amount;
     public $isBot;
     public $totalItems;
@@ -33,7 +35,12 @@ class Objects extends Component
     {
         $this->isBot = $isBot;
         $this->isBot ? $this->amount = 16 : $this->amount = 32;
-        $this->selected['category'] = $this->category->toArray();
+
+        if($this->category)
+            $this->selected['category'] = $this->category->toArray();
+
+        if($this->user)
+            $this->selected['user'] = $this->user->toArray();
     }
 
     public function render()

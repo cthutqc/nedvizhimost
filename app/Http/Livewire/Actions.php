@@ -37,11 +37,11 @@ class Actions extends Component
 
         $this->dispatchBrowserEvent('success-show');
 
-        /*if(app()->isProduction()) {
+        if(app()->isProduction()) {
             User::role('manager')->get()->each(function ($user){
                 $user->notify(new NewActionRequestNotification($this->address, $this->phone, $this->activeAction, $this->activeVariant[$this->activeAction]));
             });
-        }*/
+        }
     }
 
     public function setActiveAction($id)
