@@ -7,7 +7,9 @@
             {{$page->name}}
         </x-h1>
 
-        <livewire:callback-form />
+        <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8">
+            @each('services.item', $services, 'service')
+        </div>
 
     </x-container>
 </x-app-layout>

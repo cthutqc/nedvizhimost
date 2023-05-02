@@ -26,7 +26,7 @@ class UserRoleSeeder extends Seeder
             [
                 'name' => 'Admin',
                 'email' => 'admin@site.com',
-                'password' => 'gfhjkmgfhjkm',
+                'password' => 'password',
                 'email_verified_at' => now(),
             ]
         );

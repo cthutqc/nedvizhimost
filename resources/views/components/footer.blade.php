@@ -1,4 +1,4 @@
-<div class="w-full">
+<div class="w-full my-10">
     <x-container>
         <div class="grid grid-cols-4 gap-4">
             <ul class="hidden lg:block">
@@ -15,6 +15,15 @@
                     <li>
                         <a href="{{route('pages.show', $page)}}" class="block py-2 hover:text-red-500">
                             {{$page->name}}
+                        </a>
+                    </li>
+                @endforeach
+            </ul>
+            <ul class="hidden lg:block">
+                @foreach($services as $service)
+                    <li>
+                        <a href="{{route('services.show', $service)}}" class="block py-2 hover:text-red-500">
+                            {{$service->name}}
                         </a>
                     </li>
                 @endforeach

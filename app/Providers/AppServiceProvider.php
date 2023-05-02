@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
+use App\Models\Advantage;
 use App\Models\Category;
 use App\Models\Page;
+use App\Models\Service;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -29,6 +31,11 @@ class AppServiceProvider extends ServiceProvider
         View::composer(['components.header', 'components.footer', 'components.mobile-home-categories', 'components.mobile-menu'], function ($view) {
             $view->with('categories', Category::all());
             $view->with('pages', Page::all());
+            $view->with('services', Service::all());
+        });
+
+        View::composer(['components.advantages'], function ($view){
+           $view->with('advantages', Advantage::query()->with('media')->get());
         });
     }
 }

@@ -13,14 +13,32 @@ class PagesSeeder extends Seeder
      */
     public function run(): void
     {
-        $pages = ['О компании', 'Сотрудники', 'Вакансии', 'Контакты'];
+        $pages = [
+                [
+                    'name' => 'О компании',
+                ],
+                [
+                    'name' => 'Сотрудники',
+                    'slug' => 'employees'
+                ],
+                [
+                    'name' => 'Вакансии',
+                ],
+                [
+                    'name' => 'Контакты',
+                ],
+                [
+                    'name' => 'Услуги',
+                    'slug' => 'services'
+                ],
+            ];
 
         foreach($pages as $page){
             if(!Page::where('name', $page)->exists())
             {
                 Page::create([
-                    'name' => $page,
-                    'slug' => $page == 'Сотрудники' ? 'employees' : '',
+                    'name' => $page['name'],
+                    'slug' => $page['slug'] ?? null,
                 ]);
             }
         }
