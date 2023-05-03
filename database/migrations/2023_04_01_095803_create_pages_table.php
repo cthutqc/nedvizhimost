@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Page;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -23,6 +24,36 @@ return new class extends Migration
             $table->boolean('active')->default(true);
             $table->timestamps();
         });
+
+        $pages = [
+            [
+                'name' => 'О компании',
+            ],
+            [
+                'name' => 'Сотрудники',
+                'slug' => 'employees'
+            ],
+            [
+                'name' => 'Вакансии',
+            ],
+            [
+                'name' => 'Контакты',
+            ],
+            [
+                'name' => 'Услуги',
+                'slug' => 'services'
+            ],
+        ];
+
+        foreach($pages as $page){
+            if(!Page::where('name', $page)->exists())
+            {
+                Page::create([
+                    'name' => $page['name'],
+                    'slug' => $page['slug'] ?? null,
+                ]);
+            }
+        }
     }
 
     /**

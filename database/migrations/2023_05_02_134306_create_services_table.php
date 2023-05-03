@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('slug')->nullable();
             $table->longText('text')->nullable();
+            $table->longText('short_text')->nullable();
             $table->string('h1')->nullable();
             $table->string('meta_title')->nullable();
             $table->text('meta_description')->nullable();
@@ -36,7 +37,8 @@ return new class extends Migration
         {
             \App\Models\Service::firstOrCreate([
                 'name' => $service,
-                'text' => fake()->text
+                'text' => fake()->text(1000),
+                'short_text' => fake()->text(400),
             ]);
         }
     }

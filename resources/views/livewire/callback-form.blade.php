@@ -1,13 +1,13 @@
 <x-row>
     <x-success />
-    <div class="border border-slate-300 rounded-xl overflow-hidden bg-slate-100 px-10 py-16 grid grid-cols-4">
-        <div class="col-span-3">
+    <div class="border border-slate-300 rounded-xl overflow-hidden bg-slate-100 px-10 py-16 grid lg:grid-cols-4">
+        <div class="lg:col-span-3">
             <x-title>
                 Мы вам перезвоним
             </x-title>
             <p class="my-4">Оставьте вашу контактную информацию, чтобы мы связались
                 с вами и ответили на все интересующие вас вопросы.</p>
-            <div class="flex space-x-4">
+            <div class="md:flex md:space-x-4 space-y-4 md:space-y-0">
                 <div class="w-full relative">
                     <input type="text"
                            wire:model="name"

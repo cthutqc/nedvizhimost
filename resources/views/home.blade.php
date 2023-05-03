@@ -12,5 +12,6 @@
         <x-mobile-home-categories />
         <x-new-objects-slider />
         <livewire:actions />
+        <x-reviews />
     </x-container>
 </x-app-layout>
