@@ -45,7 +45,7 @@ class Objects extends Component
 
     public function render()
     {
-        $this->totalItems = $this->itemRepository->getAllItems($this->selected);
+        $this->totalItems = $this->itemRepository->getItemsCount($this->selected);
 
         $items = $this->itemRepository->getItems($this->amount, $this->selected);
 

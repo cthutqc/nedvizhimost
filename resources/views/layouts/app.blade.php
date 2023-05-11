@@ -20,6 +20,7 @@
     <livewire:modals.login />
     <livewire:modals.search />
     <livewire:modals.callback />
+@stack('js')
 <script>
     document.addEventListener('livewire:load', () => {
         Livewire.onPageExpired((response, message) => {})

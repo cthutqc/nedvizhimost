@@ -30,7 +30,7 @@ class AppServiceProvider extends ServiceProvider
 
         View::composer(['components.header', 'components.footer', 'components.mobile-home-categories', 'components.mobile-menu'], function ($view) {
             $view->with('categories', Category::all());
-            $view->with('pages', Page::all());
+            $view->with('pages', Page::where('show_in_menu', true)->get());
             $view->with('services', Service::all());
         });
 

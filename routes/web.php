@@ -34,5 +34,8 @@ Route::get('services', [\App\Http\Controllers\ServiceController::class, 'index']
 Route::get('services/{service:slug}', [\App\Http\Controllers\ServiceController::class, 'show'])
     ->name('services.show');
 
+Route::get('map/{category:slug}', \App\Http\Controllers\MapController::class)
+    ->name('map.index');
+
 Route::get('{page:slug}', \App\Http\Controllers\PageController::class)
     ->name('pages.show');

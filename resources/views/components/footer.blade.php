@@ -1,7 +1,7 @@
 <div class="w-full my-10">
     <x-container>
-        <div class="grid grid-cols-4 gap-4">
-            <ul class="hidden lg:block">
+        <div class="grid md:grid-cols-4 gap-4">
+            <ul class="hidden md:block">
                 @foreach($categories as $category)
                 <li>
                     <a href="{{route('categories.show', $category)}}" class="block py-2 hover:text-red-500">
@@ -10,7 +10,7 @@
                 </li>
                 @endforeach
             </ul>
-            <ul class="hidden lg:block">
+            <ul class="hidden md:block">
                 @foreach($pages as $page)
                     <li>
                         <a href="{{route('pages.show', $page)}}" class="block py-2 hover:text-red-500">
@@ -19,7 +19,7 @@
                     </li>
                 @endforeach
             </ul>
-            <ul class="hidden lg:block">
+            <ul class="hidden md:block">
                 @foreach($services as $service)
                     <li>
                         <a href="{{route('services.show', $service)}}" class="block py-2 hover:text-red-500">

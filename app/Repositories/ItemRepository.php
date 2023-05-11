@@ -10,10 +10,17 @@ class ItemRepository
      * @param $amount
      * @return \Illuminate\Database\Eloquent\Collection|array
      */
-    public function getItems($amount, $selected = null): \Illuminate\Database\Eloquent\Collection|array
+    public function getItems($amount = null, $selected = null): \Illuminate\Database\Eloquent\Collection|array
     {
         return Item::query()
             ->getItems($amount, $selected)
+            ->get();
+    }
+
+    public function getAllItems($selected = null): \Illuminate\Database\Eloquent\Collection|array
+    {
+        return Item::query()
+            ->getItems(null, $selected)
             ->get();
     }
 
@@ -21,7 +28,7 @@ class ItemRepository
      * @param $category
      * @return int
      */
-    public function getAllItems($selected = null): int
+    public function getItemsCount($selected = null): int
     {
         return Item::query()
             ->getItems(null, $selected)

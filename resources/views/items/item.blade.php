@@ -1,4 +1,4 @@
-<div class="swiper-slide group/item overflow-hidden shadow-md hover:shadow-lg rounded-xl relative">
+<div class="swiper-slide bg-white h-auto group/item overflow-hidden shadow-md hover:shadow-lg rounded-xl relative">
     <div class="h-[240px] w-full block bg-cover bg-no-repeat bg-center relative" style="background-image: url({{$item->getFirstMediaUrl() ?: asset('images/item_placeholder.jpg')}})">
         <a href="{{route('items.show', $item)}}" class="absolute inset-0"></a>
         <div class="absolute left-4 right-4 m-auto bottom-4">

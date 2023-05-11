@@ -47,7 +47,7 @@
                 </div>
                 <div class="flex space-x-4 items-center">
                     @if(count($services))
-                    <div x-data="{ open : false }" class="relative block">
+                    <div x-data="{ open : false }" class="relative hidden lg:block">
                         <a href="#" @click.prevent="open = !open"
                            class="text-lg hover:bg-red-500 hover:text-white p-1 rounded-lg"
                            :class="{'bg-red-500 text-white' : open}"

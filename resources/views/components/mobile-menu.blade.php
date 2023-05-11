@@ -2,7 +2,10 @@
     <button @click="open = !open">
         <x-icons.hamburger class="h-8 w-8" />
     </button>
-    <div x-show="open" class="fixed top-0 left-0 right-0 bottom-0 bg-black bg-opacity-70 z-[999]" x-transition.opacity.100ms>
+    <div x-show="open"
+         class="hidden top-0 left-0 right-0 bottom-0 bg-black bg-opacity-70 z-[999]"
+         :class="{ 'fixed' : open, 'hidden' : !open }"
+         x-transition.opacity.100ms>
         <div
             @click.away="open = false"
             x-show="open"
@@ -27,6 +30,14 @@
                 @foreach($pages as $page)
                     <li>
                         <a href="{{route('pages.show', $page)}}" class="w-full border-b border-b-slate-100 py-2 block">{{$page->name}}</a>
+                    </li>
+                @endforeach
+            </ul>
+            <ul>
+                <li class="w-full border-b border-b-slate-100 py-2 block font-bold">Услуги</li>
+                @foreach($services as $service)
+                    <li>
+                        <a href="{{route('services.show', $service)}}" class="w-full border-b border-b-slate-100 py-2 block">{{$service->name}}</a>
                     </li>
                 @endforeach
             </ul>

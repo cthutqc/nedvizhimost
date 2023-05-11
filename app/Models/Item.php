@@ -61,10 +61,9 @@ class Item extends Model implements HasMedia
                 $q->where('user_id', $selected['user']['id'])
                     ->orderBy('price');
             })
-            ->when(isset($selected['rooms']), function($q) use($selected){
+            ->when(isset($selected['rooms']) && count($selected['rooms']), function($q) use($selected){
                 $q->whereIn('rooms', $selected['rooms']);
             })
-            ->select('id', 'name', 'user_id', 'price', 'address', 'slug', 'total_area', 'floor', 'floors', 'rooms')
             ->with(['media', 'user:id,phone']);
     }
 }
