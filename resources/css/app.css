@@ -6,3 +6,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+    h3 {
+        @apply text-xl;
+    }
+    .description ul{
+        @apply !pl-6 list-disc;
+    }
+}

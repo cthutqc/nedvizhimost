@@ -3,12 +3,12 @@
 
         {{ Breadcrumbs::render('service', $service) }}
 
-        <div class="rounded-xl overflow-hidden p-10 grid md:grid-cols-2" style="background-color: {{$service->color ?? '#eeeeee'}}">
-            <div>
+        <div class="rounded-xl overflow-hidden grid md:grid-cols-2" style="background-color: {{$service->color ?? '#eeeeee'}}">
+            <div class="px-10 md:py-20 py-10">
                 <x-h1>{{$service->name}}</x-h1>
                 <p>{!! $service->short_text !!}</p>
             </div>
-            <div></div>
+            <div class="bg-cover bg-no-repeat bg-center" style="background-image: url('{{$service->getFirstMediaUrl()}}')"></div>
         </div>
 
         @if($service->text)

@@ -16,6 +16,7 @@ class PagesSeeder extends Seeder
         $pages = [
                 [
                     'name' => 'О компании',
+                    'slug' => 'about',
                 ],
                 [
                     'name' => 'Сотрудники',
@@ -23,9 +24,11 @@ class PagesSeeder extends Seeder
                 ],
                 [
                     'name' => 'Вакансии',
+                    'slug' => 'vacancy'
                 ],
                 [
                     'name' => 'Контакты',
+                    'slug' => 'contacts'
                 ],
                 [
                     'name' => 'Услуги',

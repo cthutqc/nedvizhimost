@@ -1,7 +1,7 @@
 <x-row>
     <x-success />
-    <div class="border border-slate-300 rounded-xl overflow-hidden bg-slate-100 px-10 py-16 grid lg:grid-cols-4">
-        <div class="lg:col-span-3">
+    <div class="border border-slate-300 rounded-xl overflow-hidden bg-slate-100 px-10 py-16">
+        <div>
             <x-title>
                 Мы вам перезвоним
             </x-title>
@@ -11,7 +11,7 @@
                 <div class="w-full relative">
                     <input type="text"
                            wire:model="name"
-                           placeholder="Bvz"
+                           placeholder="Имя"
                         @class([
                              'rounded p-4 pl-12 w-full border border-slate-300 bg-white',
                              'border-2 !border-red-500' => $errors->first('name'),
@@ -27,10 +27,10 @@
                          ]) />
                 </div>
                 <div>
-                    <button wire:click.prevent="send" class="bg-red-500 hover:bg-red-700 text-white border-2 border-red-500 hover:border-red-700 p-4 w-max block rounded">Оставить заявку</button>
+                    <button wire:click.prevent="send" class="bg-red-500 hover:bg-red-700 text-white border border-red-500 hover:border-red-700 p-4 w-max block rounded">Оставить заявку</button>
                 </div>
             </div>
-            <div class="text-sm">
+            <div class="text-sm mt-4">
                 Нажимая кнопку «Оставить заявку», Вы соглашаетесь на обработку персональных данных.
             </div>
         </div>

@@ -17,6 +17,11 @@ Breadcrumbs::for('page', function (BreadcrumbTrail $trail, $page) {
     $trail->push($page->name, route('pages.show', $page));
 });
 
+Breadcrumbs::for('vacancies', function (BreadcrumbTrail $trail, $page) {
+    $trail->parent('home');
+    $trail->push($page->name, route('vacancies.index'));
+});
+
 Breadcrumbs::for('service', function (BreadcrumbTrail $trail, $service) {
     $trail->parent('page', \App\Models\Page::where('slug', 'services')->first());
     $trail->push($service->name, route('services.show', $service));

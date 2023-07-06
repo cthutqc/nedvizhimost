@@ -19,6 +19,7 @@ class Page extends Model implements HasMedia
     {
         return SlugOptions::create()
             ->generateSlugsFrom('name')
-            ->saveSlugsTo('slug');
+            ->saveSlugsTo('slug')
+            ->preventOverwrite();
     }
 }

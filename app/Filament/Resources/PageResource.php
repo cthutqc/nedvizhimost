@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\ServiceResource\Pages;
-use App\Filament\Resources\ServiceResource\RelationManagers;
-use App\Models\Service;
+use App\Filament\Resources\PageResource\Pages;
+use App\Filament\Resources\PageResource\RelationManagers;
+use App\Models\Page;
 use Filament\Forms;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
@@ -13,15 +13,13 @@ use Filament\Tables;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class ServiceResource extends Resource
+class PageResource extends Resource
 {
-    protected static ?string $model = Service::class;
+    protected static ?string $model = Page::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-collection';
 
-    protected static ?string $navigationGroup = 'Услуги';
-
-    protected static ?string $pluralModelLabel = 'Услуги';
+    protected static ?string $pluralModelLabel = 'Страницы';
 
     public static function form(Form $form): Form
     {
@@ -34,19 +32,18 @@ class ServiceResource extends Resource
                     Forms\Components\TextInput::make('slug')
                         ->maxLength(255),
                     Forms\Components\RichEditor::make('text'),
-                    Forms\Components\RichEditor::make('short_text'),
                     Forms\Components\TextInput::make('h1')
                         ->maxLength(255),
                     Forms\Components\TextInput::make('meta_title')
                         ->maxLength(255),
                     Forms\Components\Textarea::make('meta_description')
                         ->maxLength(65535),
-                    Forms\Components\ColorPicker::make('color'),
                     Forms\Components\TextInput::make('order')
                         ->default(0),
                     Forms\Components\Toggle::make('active')
                         ->default(true),
-                    Forms\Components\SpatieMediaLibraryFileUpload::make('image'),
+                    Forms\Components\Toggle::make('show_in_menu')
+                        ->default(false),
                 ])
             ]);
     }
@@ -56,9 +53,10 @@ class ServiceResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name'),
-                Tables\Columns\TextColumn::make('color'),
                 Tables\Columns\TextColumn::make('order'),
                 Tables\Columns\IconColumn::make('active')
+                    ->boolean(),
+                Tables\Columns\IconColumn::make('show_in_menu')
                     ->boolean(),
             ])
             ->filters([
@@ -75,16 +73,16 @@ class ServiceResource extends Resource
     public static function getRelations(): array
     {
         return [
-            RelationManagers\ServiceNumbersRelationManager::class,
+            //
         ];
     }
 
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListServices::route('/'),
-            'create' => Pages\CreateService::route('/create'),
-            'edit' => Pages\EditService::route('/{record}/edit'),
+            'index' => Pages\ListPages::route('/'),
+            'create' => Pages\CreatePage::route('/create'),
+            'edit' => Pages\EditPage::route('/{record}/edit'),
         ];
     }
 }

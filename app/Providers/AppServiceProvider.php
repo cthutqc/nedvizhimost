@@ -6,6 +6,7 @@ use App\Models\Advantage;
 use App\Models\Category;
 use App\Models\Page;
 use App\Models\Service;
+use App\Models\Setting;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -32,6 +33,7 @@ class AppServiceProvider extends ServiceProvider
             $view->with('categories', Category::all());
             $view->with('pages', Page::where('show_in_menu', true)->get());
             $view->with('services', Service::all());
+            $view->with('phone', Setting::where('code', 'phone')->first()?->value);
         });
 
         View::composer(['components.advantages'], function ($view){

@@ -22,6 +22,9 @@ Route::get('categories/{category:slug}', \App\Http\Controllers\CategoryControlle
 Route::get('object/{item:slug}', \App\Http\Controllers\ItemController::class)
     ->name('items.show');
 
+Route::get('vacancies', \App\Http\Controllers\VacancyController::class)
+    ->name('vacancies.index');
+
 Route::get('employees', [\App\Http\Controllers\EmployeesController::class, 'index'])
     ->name('employees.index');
 
