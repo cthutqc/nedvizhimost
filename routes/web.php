@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('debug', \App\Http\Controllers\DebugController::class);
+
 Route::get('/', \App\Http\Controllers\HomeController::class)
     ->name('home');
 
@@ -30,6 +32,9 @@ Route::get('employees', [\App\Http\Controllers\EmployeesController::class, 'inde
 
 Route::get('employees/{user}', [\App\Http\Controllers\EmployeesController::class, 'show'])
     ->name('employees.show');
+
+Route::get('insurance', \App\Http\Controllers\InsuranceController::class)
+    ->name('insurances.show');
 
 Route::get('services', [\App\Http\Controllers\ServiceController::class, 'index'])
     ->name('services.index');

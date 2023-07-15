@@ -36,6 +36,7 @@ class ReviewResource extends Resource
                         ->default(true),
                     Forms\Components\TextInput::make('order')
                         ->default(0),
+                    Forms\Components\SpatieMediaLibraryFileUpload::make('image'),
                 ])
             ]);
     }

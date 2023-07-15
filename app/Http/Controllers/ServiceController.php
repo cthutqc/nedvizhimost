@@ -23,7 +23,7 @@ class ServiceController extends Controller
     {
         $action->handle($service);
 
-        $service->load(['faqs', 'service_numbers', 'mortgage']);
+        $service->load(['faqs', 'service_numbers', 'mortgage', 'service_jobs']);
 
         return view('services.show', compact('service'));
     }

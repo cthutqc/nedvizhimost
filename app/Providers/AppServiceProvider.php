@@ -36,6 +36,10 @@ class AppServiceProvider extends ServiceProvider
             $view->with('phone', Setting::where('code', 'phone')->first()?->value);
         });
 
+        View::composer('components.logo', function ($view){
+            $view->with('logo', Setting::where('code', 'logo')->first());
+        });
+
         View::composer(['components.advantages'], function ($view){
            $view->with('advantages', Advantage::query()->with('media')->get());
         });

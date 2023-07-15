@@ -4,7 +4,7 @@
 ])
 <x-row>
     <div x-data="{itemMap: null}"
-         x-init="ymaps.load('https://api-maps.yandex.ru/2.1/?lang=ru_RU')
+         x-init="ymaps.load('https://api-maps.yandex.ru/2.1/?lang=ru_RU&apikey=002208ba-6b10-4727-b26f-87bb07720529')
                           .then(ymaps => {
                             const itemMap = new ymaps.Map($refs.container, {
                                 center: [{{$latitude}}, {{$longitude}}],

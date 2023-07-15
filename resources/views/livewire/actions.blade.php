@@ -29,10 +29,8 @@
                     </div>
                 @endforeach
                 @if(!isset($isOpen[$activeAction]))
-                    <div wire:click="setOpen({{$activeAction}})" class="group rounded p-4 relative text-white relative border border-red-500 cursor-pointer">
-                <span class="absolute inset-x-0 m-auto w-max top-1/2 -translate-y-1/2 group-hover:text-red-500">
-                    Показать еще
-                </span>
+                    <div wire:click="setOpen({{$activeAction}})" class="group rounded p-4 text-center text-white relative hover:text-red-500 border border-red-500 cursor-pointer">
+                        Показать еще
                     </div>
                 @endif
             </div>
@@ -40,9 +38,9 @@
                 <div class="w-full relative">
                     <input type="text"
                            wire:model="address"
-                           placeholder="Для бесплатной оценки объекта введите адрес"
+                           placeholder="Введите адрес объекта"
                         @class([
-                             'rounded p-4 pl-12 w-full border border-slate-300 bg-transparent text-white',
+                             'rounded lg:w-[440px] xl:w-full p-4 w-full border border-slate-300 bg-transparent text-white',
                              'border-2 !border-red-500' => $errors->first('address'),
                          ]) />
                 </div>
@@ -51,12 +49,12 @@
                            wire:model="phone"
                            placeholder="Телефон"
                         @class([
-                             'maskPhone rounded p-4 pl-12 w-full border border-slate-300 bg-transparent text-white',
+                             'maskPhone rounded p-4 w-full border border-slate-300 bg-transparent text-white',
                              'border-2 !border-red-500' => $errors->first('phone'),
                          ]) />
                 </div>
                 <div>
-                    <button wire:click.prevent="send" class="bg-red-500 hover:bg-red-700 text-white border-2 border-red-500 hover:border-red-700 p-4 w-max block rounded">Оставить заявку</button>
+                    <button wire:click.prevent="send" class="bg-red-500 hover:bg-red-700 text-white border-2 border-red-500 hover:border-red-700 p-4 w-full lg:w-max block rounded">Оставить заявку</button>
                 </div>
             </div>
             <div class="text-sm text-white">

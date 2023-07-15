@@ -1,7 +1,7 @@
 @props([
     'faqs' => $faqs
 ])
-@if($faqs)
+@if($faqs->count())
     <x-row>
         <x-title>Вопрос ответ</x-title>
         <div x-data="{ selected : null }">

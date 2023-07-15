@@ -8,6 +8,7 @@
                 <x-h1>
                     {{$item->name}}
                 </x-h1>
+                <p class="">По адресу: {{$item->address}}</p>
 
                 <x-row>
                     <p>№ объекта: {{$item->id}}</p>
@@ -71,25 +72,30 @@
                     </div>
                 </div>
 
-                <x-item-map :latitude="$item->latitude" :longitude="$item->longitude" />
-
+                @if($item->latitude && $item->longitude)
+                <x-item-map :latitude="$item->latitude" :longitude="$item->longitude"/>
+                @else
+                <x-item-map-geocode :address="$item->address" />
+                @endif
                 <x-row>
                     <x-title>Характеристики</x-title>
-                    <div class="grid grid-cols-2 gap-x-8">
+                    <div class="grid md:grid-cols-2 gap-x-8">
                         @foreach($attributes as $name => $value)
+                            @if($value)
                             <div class="border-b border-b-slate-200">
                                 <div class="py-4 flex justify-between">
                                     <div class="text-slate-500 text-left">{{$name}}</div>
                                     <div class="text-right">{{$value}}</div>
                                 </div>
                             </div>
+                            @endif
                         @endforeach
                     </div>
                 </x-row>
 
                 <x-row>
                     <x-title>Описание</x-title>
-                    {{$item->text}}
+                    {!! $item->text !!}
                 </x-row>
 
             </div>
@@ -99,6 +105,7 @@
                     <p class="text-slate-400">Цена</p>
                     <p class="font-bold text-3xl">{{$item->formattedPrice}}</p>
                 </div>
+                @isset($item->user)
                 <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 space-y-10">
                     <a href="{{route('employees.show', $item->user)}}" class="flex space-x-4">
                         <div>
@@ -115,6 +122,7 @@
                     </a>
                     <x-emploee-buttons :phone="$item->user->phone" />
                 </div>
+                @endif
             </div>
         </div>
 

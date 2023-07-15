@@ -8,7 +8,7 @@
                 <x-h1>{{$service->h1?:$service->name}}</x-h1>
                 <p>{!! $service->short_text !!}</p>
             </div>
-            <div class="bg-cover bg-no-repeat bg-center" style="background-image: url('{{$service->getFirstMediaUrl()}}')"></div>
+            <div class="bg-contain bg-no-repeat bg-right-bottom" style="background-image: url('{{$service->getFirstMediaUrl()}}')"></div>
         </div>
 
         @if($service->text)
@@ -24,6 +24,8 @@
         <x-service-mortgage-conditions :mortgageConditions="$service->mortgage?->mortgage_conditions" />
 
         <x-service-numbers :serviceNumbers="$service->service_numbers" :color="$service->color"/>
+
+        <x-service-jobs :serviceJobs="$service->service_jobs" />
 
         <livewire:callback-form />
 

@@ -32,10 +32,10 @@
                         @foreach($reviews as $review)
                             <div class="swiper-slide overflow-hidden border border-slate-300 rounded-xl p-4 h-full" style="height: unset">
                                 <div class="flex justify-start space-x-2 items-center">
-                                    <img
-                                        class="rounded-full w-16 h-16"
-                                        src="{{$review->getFirstMediaUrl() ? $review->getFirstMediaUrl() : asset('images/user_placeholder.jpg')}}"
-                                    />
+                                    <div
+                                        class="rounded-full w-16 h-16 bg-cover bg-center bg-no-repeat"
+                                        style="background-image: url('{{$review->getFirstMediaUrl() ?: asset('images/user_placeholder.jpg')}}')"
+                                    ></div>
                                     <p class="font-semibold text-lg">{{$review->name}}</p>
                                 </div>
                                 <div class="pt-4">

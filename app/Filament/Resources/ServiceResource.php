@@ -75,7 +75,9 @@ class ServiceResource extends Resource
     public static function getRelations(): array
     {
         return [
+            RelationManagers\FaqsRelationManager::class,
             RelationManagers\ServiceNumbersRelationManager::class,
+            RelationManagers\ServiceJobsRelationManager::class,
         ];
     }
 

@@ -1,3 +1,3 @@
-<div {{$attributes->merge(['class' => 'my-10 w-full block'])}}>
+<div {{$attributes->merge(['class' => 'py-10 w-full block'])}}>
     {{$slot}}
 </div>

@@ -35,6 +35,7 @@ class SettingResource extends Resource
                     Forms\Components\Textarea::make('value')
                         ->required()
                         ->maxLength(65535),
+                    Forms\Components\SpatieMediaLibraryFileUpload::make('image'),
                 ])
             ]);
     }
@@ -43,6 +44,7 @@ class SettingResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\SpatieMediaLibraryImageColumn::make('image'),
                 Tables\Columns\TextColumn::make('name'),
                 Tables\Columns\TextColumn::make('code'),
                 Tables\Columns\TextColumn::make('value'),

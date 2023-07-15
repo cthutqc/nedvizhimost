@@ -8,8 +8,8 @@
 @tailwind utilities;
 
 @layer base {
-    h3 {
-        @apply text-xl;
+    h2, h3{
+        @apply text-2xl font-bold block my-4;
     }
     .description ul{
         @apply !pl-6 list-disc;
