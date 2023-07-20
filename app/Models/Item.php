@@ -38,7 +38,7 @@ class Item extends Model implements HasMedia
 
     public function getFormattedPriceAttribute():string
     {
-        return number_format($this->attributes['price'] / 100, 0, ' ' , ' ') . ' ₽';
+        return number_format($this->attributes['price'], 0, ' ' , ' ') . ' ₽';
     }
 
     public function deal_type():BelongsTo
@@ -46,9 +46,15 @@ class Item extends Model implements HasMedia
         return $this->belongsTo(DealType::class);
     }
 
+    public function item_type():BelongsTo
+    {
+        return $this->belongsTo(ItemType::class);
+    }
+
     public function scopeGetItems(Builder $query, $amount = null, $selected = null): void
     {
-        $query->when($amount, function ($q) use ($amount) {
+        $query//->whereBetween('price', [$selected['min'] * 100, $selected['max'] * 100])
+            ->when($amount, function ($q) use ($amount) {
                 $q->take($amount);
             })
             ->when(isset($selected['category']), function ($q) use ($selected) {
@@ -60,6 +66,12 @@ class Item extends Model implements HasMedia
             ->when(isset($selected['user']), function ($q) use ($selected) {
                 $q->where('user_id', $selected['user']['id'])
                     ->orderBy('price');
+            })
+            ->when(isset($selected['deal_type']), function($q) use($selected){
+                $q->where('deal_type_id', $selected['deal_type']['id']);
+            })
+            ->when(isset($selected['item_type']), function($q) use($selected){
+                $q->where('item_type_id', $selected['item_type']['id']);
             })
             ->when(isset($selected['rooms']) && count($selected['rooms']), function($q) use($selected){
                 $q->whereIn('rooms', $selected['rooms']);

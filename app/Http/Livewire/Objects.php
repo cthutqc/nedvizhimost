@@ -17,6 +17,7 @@ class Objects extends Component
     public $isBot;
     public $totalItems;
     private $itemRepository;
+
     public $selected;
 
     protected $listeners = ['setSelected'];
@@ -31,7 +32,7 @@ class Objects extends Component
         $this->itemRepository = App::make(ItemRepository::class);
     }
 
-    public function mount($isBot = false)
+    public function mount($isBot = false):void
     {
         $this->isBot = $isBot;
         $this->isBot ? $this->amount = 16 : $this->amount = 32;

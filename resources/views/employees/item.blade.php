@@ -8,7 +8,7 @@
         </div>
         <div class="space-y-4">
             <p class="font-bold text-xl">{{$user->name}}<br>{{$user->last_name}}</p>
-            <p class="text-slate-400">{{$user->user_position->name}}</p>
+            <p class="text-slate-400">{{$user->user_position?->name}}</p>
             <p class="block font-bold text-lg">{{$user->phone}}</p>
         </div>
     </a>

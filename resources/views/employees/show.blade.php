@@ -13,7 +13,7 @@
                 </div>
                 <div class="space-y-2 md:space-y-6">
                     <x-h1>{{$user->name}}<br>{{$user->last_name}}</x-h1>
-                    <p class="text-slate-400">{{$user->user_position->name}}</p>
+                    <p class="text-slate-400">{{$user->user_position?->name}}</p>
                     <a href="tel:{{$user->phone}}" class="block md:hidden text-xl xl:text-3xl font-bold">{{$user->phone}}</a>
                 </div>
             </div>

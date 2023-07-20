@@ -20,6 +20,7 @@ class ItemRepository
     public function getAllItems($selected = null): \Illuminate\Database\Eloquent\Collection|array
     {
         return Item::query()
+            ->with(['deal_type', 'item_type'])
             ->getItems(null, $selected)
             ->get();
     }

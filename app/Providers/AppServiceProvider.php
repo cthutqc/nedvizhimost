@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Page;
 use App\Models\Service;
 use App\Models\Setting;
+use App\Repositories\ItemRepository;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -17,7 +18,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+
     }
 
     /**

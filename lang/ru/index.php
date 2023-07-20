@@ -1,0 +1,28 @@
+<?php
+
+return [
+    'renovation' => 'Ремонт',
+    'window-view' => 'Окна',
+    'bathroom-unit' => 'Санузел',
+    'balcony' => 'Балкон',
+    'floor-covering' => 'Пол',
+    'room-furniture' => 'Мебель в комнатах',
+    'air-conditioner' => 'Кондиционер',
+    'phone' => 'Телефон',
+    'built-year' => 'Год постройки',
+    'ceiling-height' => 'Высота потолков',
+    'guarded-building' => 'Закрытая территория',
+    'access-control-system' => 'Консьерж',
+    'lift' => 'Лифт',
+    'rubbish-chute' => 'Мусоропроваод',
+    'flat-alarm' => 'Сигнализация',
+    'alarm' => 'Аварийная сигнализация',
+    'toilet' => 'Ванная',
+    'rooms' => 'Количество комнат',
+    'floor' => 'Этаж',
+    'floors' => 'Количество этажей',
+    'total_area' => 'Общая площадь',
+    'living_space' => 'Жилая площадь',
+    'kitchen_area' => 'Площадь кухни',
+    'land_area' => 'Площадь участка',
+];

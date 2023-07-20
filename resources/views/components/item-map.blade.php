@@ -8,7 +8,7 @@
                           .then(ymaps => {
                             const itemMap = new ymaps.Map($refs.container, {
                                 center: [{{$latitude}}, {{$longitude}}],
-                                zoom: 7,
+                                zoom: 10,
                                 controls: []
                             })
                             itemMap.geoObjects.add(new ymaps.Placemark([{{$latitude}}, {{$longitude}}], {

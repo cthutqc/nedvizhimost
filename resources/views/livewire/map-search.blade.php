@@ -24,8 +24,8 @@
              ymaps.load('https://api-maps.yandex.ru/2.1/?lang=ru_RU')
                           .then(ymaps => {
                             const itemMap = new ymaps.Map($refs.container, {
-                                center: [0, 0],
-                                zoom: 7,
+                                center: [54.735152, 55.958736],
+                                zoom: 10,
                                 controls: []
                             })
                             let objectManager = new ymaps.ObjectManager({ clusterize: true });
@@ -57,7 +57,21 @@
                           }).catch(error => console.log('Failed to load Yandex Maps', error));
          });"
     >
-        <div id="map" class="w-full h-[500px]" x-ref="container">
+        <div id="map" class="w-full h-screen relative" x-ref="container">
+            <div class="absolute top-2 right-2 z-10 flex">
+                <div class="relative rounded-l-md bg-white w-full lg:w-max whitespace-nowrap">
+                    <button class="flex items-center p-3 px-10 m-auto">
+                        <x-icons.filter class="h-4 w-auto" />
+                        <span>Фильтр</span>
+                    </button>
+                </div>
+                <a href="/categories/{{$this->selected['category']['slug']}}"
+                   class="w-full lg:w-max relative p-4 bg-slate-800 rounded-r-md space-x-1 text-white flex items-center border-y border-slate-800 justify-center whitespace-nowrap"
+                >
+                    <x-icons.lists class="h-5 w-auto fill-white" />
+                    <span>Списком</span>
+                </a>
+            </div>
         </div>
     </div>
 </div>
