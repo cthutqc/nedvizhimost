@@ -8,7 +8,7 @@
                 <div>
                     <img
                         src="{{count($user->getMedia()) ? $user->getFirstMediaUrl() : asset('images/user_placeholder.jpg')}}"
-                        class="h-[140px]"
+                        class="h-[240px]"
                     />
                 </div>
                 <div class="space-y-2 md:space-y-6">

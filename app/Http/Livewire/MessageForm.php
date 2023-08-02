@@ -1,30 +1,35 @@
 <?php
 
-namespace App\Http\Livewire\Modals;
+namespace App\Http\Livewire;
 
-use App\Http\Livewire\Modal;
 use App\Models\Setting;
-use App\Notifications\CallbackNotification;
+use App\Notifications\ContactsNotification;
 use Illuminate\Support\Facades\Notification;
+use Livewire\Component;
 
-class Callback extends Modal
+class MessageForm extends Component
 {
+
     public $name;
     public $phone;
+    public $message;
 
     public function send()
     {
         $validated = $this->validate([
             'name' => 'required',
             'phone' => 'required',
+            'message' => 'required',
         ]);
 
         Notification::route('mail', Setting::where('code', 'email')->first()?->value)
-            ->notify(new CallbackNotification($validated));
+            ->notify(new ContactsNotification($validated));
+
+        $this->dispatchBrowserEvent('success-show');
     }
 
     public function render()
     {
-        return view('livewire.modals.callback');
+        return view('livewire.message-form');
     }
 }

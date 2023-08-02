@@ -60,8 +60,6 @@ class Item extends Model implements HasMedia
             ->when(isset($selected['category']), function ($q) use ($selected) {
                 $q->where('category_id', $selected['category']['id'])
                     ->orderBy('price');
-            }, function ($q){
-                $q->orderBy('created_at');
             })
             ->when(isset($selected['user']), function ($q) use ($selected) {
                 $q->where('user_id', $selected['user']['id'])
@@ -76,6 +74,6 @@ class Item extends Model implements HasMedia
             ->when(isset($selected['rooms']) && count($selected['rooms']), function($q) use($selected){
                 $q->whereIn('rooms', $selected['rooms']);
             })
-            ->with(['media', 'user:id,phone']);
+            ->with(['media', 'user:id,phone', 'category']);
     }
 }

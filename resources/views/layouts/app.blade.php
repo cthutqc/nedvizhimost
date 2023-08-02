@@ -20,6 +20,7 @@
     <livewire:modals.login />
     <livewire:modals.search />
     <livewire:modals.callback />
+    <livewire:modals.buy-house />
 @stack('js')
 <script>
     document.addEventListener('livewire:load', () => {

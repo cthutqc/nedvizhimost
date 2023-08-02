@@ -120,7 +120,7 @@
                             <p class="block font-bold text-lg">{{$item->user->phone}}</p>
                         </div>
                     </a>
-                    <x-emploee-buttons :phone="$item->user->phone" />
+                    <x-emploee-buttons :email="$item->user->email ?: \App\Models\Setting::where('code', 'email')->first()?->value" :phone="$item->user->phone ?: \App\Models\Setting::where('code', 'phone')->first()->value" />
                 </div>
                 @endif
             </div>

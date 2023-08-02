@@ -1,9 +1,9 @@
 <div class="w-full">
     <x-container class="hidden lg:block">
         <div class="flex justify-between items-center py-2">
-            <x-logo />
+            <x-logo/>
             <div class="space-y-2">
-                <ul class="hidden lg:flex justify-start space-x-10 items-center">
+                <ul class="hidden lg:flex justify-center space-x-2 items-center">
                     @foreach($pages as $page)
                         <li>
                             <a href="{{route('pages.show', $page)}}"
@@ -15,8 +15,12 @@
                             </a>
                         </li>
                     @endforeach
+                        <button x-data="{}"
+                                @click.prevent="window.livewire.emitTo('modals.buy-house', 'show')"
+                                class="text-white w-max px-2 block bg-red-500 rounded-md text-base"
+                        >Заказать дом</button>
                 </ul>
-                <ul class="hidden lg:flex justify-start space-x-10 items-center">
+                <ul class="hidden lg:flex justify-center space-x-2 items-center">
                     @foreach($categories as $category)
                         <li>
                             <a href="{{route('categories.show', $category)}}" @class([
@@ -28,6 +32,22 @@
                             </a>
                         </li>
                     @endforeach
+                        <li>
+                            <a href="/insurance" @class([
+                                        "hover:bg-red-500 hover:text-white p-1 rounded-lg",
+                                        "bg-red-500 text-white" => request()->segment(1) === 'insurance',
+                                ])>
+                                Страхование
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/services/iuridiceskie-uslugi" @class([
+                                        "hover:bg-red-500 hover:text-white p-1 rounded-lg",
+                                        "bg-red-500 text-white" => request()->segment(2) === 'iuridiceskie-uslugi'
+                                ])>
+                                Юрист
+                            </a>
+                        </li>
                     <li>
                         <button x-data="{}" x-on:click.prevent="window.livewire.emitTo('modals.search', 'showSearch')">
                             <x-icons.search/>
@@ -36,11 +56,11 @@
                 </ul>
 
             </div>
-            <div>
-                <a href="tel:{{$phone}}" class="font-bold text-2xl block">{{$phone}}</a>
+            <div class="w-[200px] xl:w-auto">
+                <a href="tel:{{$phone}}" class="font-bold text-sm xl:text-2xl block text-right">{{$phone}}</a>
                 <button x-data="{}"
                         @click.prevent="window.livewire.emitTo('modals.callback', 'show')"
-                        class="text-red-500 block text-right"
+                        class="text-red-500 block text-right text-[10px] xl:text-base"
                 >Заказать звонок</button>
             </div>
         </div>
@@ -66,6 +86,22 @@
                                 </a>
                             </li>
                         @endforeach
+                            <li>
+                                <a href="/insurance" @class([
+                                        "hover:bg-red-500 hover:text-white p-1 rounded-lg",
+                                        "bg-red-500 text-white" => request()->segment(1) === 'insurance'
+                                ])>
+                                    Страхование
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/services/iuridiceskie-uslugi" @class([
+                                        "hover:bg-red-500 hover:text-white p-1 rounded-lg",
+                                        "bg-red-500 text-white" => request()->segment(2) === 'iuridiceskie-uslugi'
+                                ])>
+                                    Юрист
+                                </a>
+                            </li>
                     </ul>
                 </div>
                 <div class="flex justify-end space-x-4 items-center">

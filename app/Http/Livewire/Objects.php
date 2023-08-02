@@ -7,6 +7,7 @@ use App\Models\Item;
 use App\Models\User;
 use App\Repositories\ItemRepository;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Session;
 use Livewire\Component;
 
 class Objects extends Component
@@ -37,8 +38,12 @@ class Objects extends Component
         $this->isBot = $isBot;
         $this->isBot ? $this->amount = 16 : $this->amount = 32;
 
-        if($this->category)
-            $this->selected['category'] = $this->category->toArray();
+        if($this->category) {
+            if(Session::has('filter'))
+                $this->selected = Session::pull('filter');
+            else
+                $this->selected['category'] = $this->category->toArray();
+        }
 
         if($this->user)
             $this->selected['user'] = $this->user->toArray();

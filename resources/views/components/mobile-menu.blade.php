@@ -42,6 +42,9 @@
                             <a href="{{route('services.show', $service)}}" class="w-full border-b border-b-slate-100 py-2 block">{{$service->name}}</a>
                         </li>
                     @endforeach
+                        <li>
+                            <a href="/insurance" class="w-full border-b border-b-slate-100 py-2 block">Страхование</a>
+                        </li>
                 </ul>
 
             </div>

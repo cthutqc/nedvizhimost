@@ -12,5 +12,5 @@
             <p class="block font-bold text-lg">{{$user->phone}}</p>
         </div>
     </a>
-    <x-emploee-buttons :phone="$user->phone" />
+    <x-emploee-buttons :email="$user->email ?: \App\Models\Setting::where('code', 'email')->first()?->value" :phone="$user->phone ?: \App\Models\Setting::where('code', 'phone')->first()?->value" />
 </div>

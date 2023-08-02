@@ -8,6 +8,8 @@ use App\Models\Item;
 use App\Models\ItemType;
 use App\Repositories\ItemRepository;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Session;
+use Illuminate\View\View;
 use Livewire\Component;
 
 class Filter extends Component
@@ -15,8 +17,8 @@ class Filter extends Component
     public $selected = [
         'category' => null,
         'rooms' => [],
-        'min' => 1,
-        'max' => 10000000000000000000000000,
+        'min' => 0,
+        'max' => 0,
         'deal_type' => null,
         'item_type' => null,
     ];
@@ -25,9 +27,11 @@ class Filter extends Component
     public $categoryId;
     public $is_home = false;
 
-    public $min;
+    public $min = 0;
 
-    public $max;
+    public $max = 0;
+
+    public $preloadItems;
 
     public $rooms;
 
@@ -39,61 +43,64 @@ class Filter extends Component
 
     private $itemRepository;
 
-    public function showOffCanvasFilter()
+    protected $listeners = ['setMin'];
+
+    public function showOffCanvasFilter():void
     {
         $this->emit('showFilter', $this->selected);
     }
 
-    public function boot()
+    public function boot():void
     {
         $this->itemRepository = App::make(ItemRepository::class);
     }
 
-    public function mount($is_home = false, $category = null)
+    public function mount($is_home = false, $category = null):void
     {
         $this->is_home = $is_home;
 
         if($category) {
             $this->live = true;
             $this->categoryId = $category;
-            $this->selected['category'] = Category::find($category->id)->toArray();
+            if(Session::has('filter'))
+                $this->selected = Session::get('filter');
+            else
+                $this->selected['category'] = Category::find($category->id)->toArray();
         }
         else {
             $this->selected['category'] = Category::find(1)->toArray();
         }
 
-        $items = $this->itemRepository->getAllItems($this->selected);
-
-        $this->dealTypes = DealType::whereHas('items', function ($q) use ($items){
-            $q->whereIn('id', $items->pluck('id')->toArray());
-        })->get();
-
-        $this->itemTypes = ItemType::whereHas('items', function ($q) use ($items){
-            $q->whereIn('id', $items->pluck('id')->toArray());
-        })->get();
-
-        $this->rooms = $items->unique('rooms')->sortBy('rooms');
+        if(!$this->is_home) {
+            $this->preloadItems = Item::query()
+                ->where('category_id', $category->id)
+                ->get();
+        }
 
         $this->emit('setSelected', $this->selected);
+
     }
 
-    public function liveDealType($id)
+    public function liveDealType($id):void
     {
         $this->selected['deal_type'] = DealType::find($id)->toArray();
     }
 
-    public function liveItemType($id)
+    public function liveItemType($id):void
     {
         $this->selected['item_type'] = ItemType::find($id)->toArray();
     }
 
     public function filter()
     {
+        Session::put('filter', $this->selected);
+
         return redirect()->to('/categories/' . $this->selected['category']['slug']);
     }
 
     public function liveCategory($categoryId)
     {
+
         $this->selected['category'] = Category::find($categoryId)->toArray();
 
         if($this->live){
@@ -101,30 +108,54 @@ class Filter extends Component
         }
     }
 
-    public function countItems()
+    public function countItems():void
     {
         $this->itemsCount = $this->itemRepository->getItemsCount($this->selected);
     }
 
-    public function getItems()
+    public function getItems():void
     {
+        if($this->is_home){
+
+            $this->preloadItems = Item::query()
+                ->where('category_id', $this->selected['category']['id'])
+                ->get();
+
+        }
+
         $this->items = $this->itemRepository->getAllItems($this->selected);
 
         $this->itemsCount = $this->items->count();
 
+        $this->rooms = $this->preloadItems->unique('rooms')->sortBy('rooms');
+
+        $this->dealTypes = DealType::whereHas('items', function ($q){
+            $q->whereIn('id', $this->preloadItems->pluck('id')->toArray());
+        })->get();
+
+        $this->itemTypes = ItemType::whereHas('items', function ($q){
+            $q->whereIn('id', $this->preloadItems->pluck('id')->toArray());
+        })->get();
+
         $this->emit('setSelected', $this->selected);
     }
 
-    public function render()
+    public function setMin($price):void
+    {
+        $this->selected['min'] = $price;
+    }
+
+    public function setMax($price):void
+    {
+        $this->selected['max'] = $price;
+    }
+
+    public function render():View
     {
         if($this->selected['rooms'])
             $this->selected['rooms'] = array_filter($this->selected['rooms']);
 
         $this->getItems();
-
-        $this->selected['min'] = $this->min;
-
-        $this->selected['max'] = $this->max;
 
         return view('livewire.filter', [
             'categories' => Category::all(),
